@@ -1,3 +1,8 @@
 <mat-toolbar color="primary">
   <span>log</span>
 </mat-toolbar>
+
+<ngx-auth-firebaseui
+             (onSuccess)="printUser($event)"
+             (onError)="printError($event)">
+        </ngx-auth-firebaseui>
