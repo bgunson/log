@@ -1,8 +1,13 @@
 
 
-.main-div {
+#main-div {
+    padding-top: 20px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#log-logo {
+    padding-right: 5px;
 }

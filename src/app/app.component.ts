@@ -9,6 +9,7 @@ import {AuthProvider} from 'ngx-auth-firebaseui';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   title = 'log';
 
   providers = AuthProvider;

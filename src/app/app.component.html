@@ -1,15 +1,12 @@
 <mat-toolbar color="primary">
+  <img src="../assets/wood.png" id="log-logo">
   <span>log</span>
 </mat-toolbar>
 
-<div class="main-div">
-  <mat-card class="auth-card">
+<div id="main-div">
     <ngx-auth-firebaseui
       [providers]="['google']"
-      [guestEnabled]="false"
-      (onSuccess)="printUser($event)"
-      (onError)="printError($event)">
+      [guestEnabled]="false">
     </ngx-auth-firebaseui>
-  </mat-card>
 </div>
 

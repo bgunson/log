@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoggedInGuard } from 'ngx-auth-firebaseui';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'secured',
+    loadChildren: 'app/secured/secured.module#SecuredModule',
+    canActivate: [LoggedInGuard]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
