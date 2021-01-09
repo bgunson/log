@@ -11,6 +11,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import {AuthProvider} from 'ngx-auth-firebaseui';
+
 
 @NgModule({
   declarations: [
@@ -49,8 +51,8 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
         nameMinLength: 2,
         // If set, sign-in/up form is not available until email has been verified.
         // Plus protected routes are still protected even though user is connected.
-        guardProtectedRoutesUntilEmailIsVerified: true,
-        enableEmailVerification: true, // default: true
+        guardProtectedRoutesUntilEmailIsVerified: false,
+        enableEmailVerification: false, // default: true
       }),
     
   ],
