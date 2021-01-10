@@ -3,10 +3,39 @@
   <span>log</span>
 </mat-toolbar>
 
+
 <div id="main-div">
-    <ngx-auth-firebaseui
+
+  <ngx-auth-firebaseui
+      [hidden]="signedIn"
       [providers]="['google']"
-      [guestEnabled]="false">
-    </ngx-auth-firebaseui>
+      [guestEnabled]="false"
+      (onSuccess)="signInUser($event)">
+  </ngx-auth-firebaseui>
+
+
+  <ngx-auth-firebaseui-user 
+    [hidden]="!signedIn"
+    (onSignOut)="signOut()">
+  </ngx-auth-firebaseui-user>
+
+</div>  
+
+
+
+    
+
+<!-- <div *ngIf="!signedIn; else #authenticated">
+
+
+
 </div>
+
+<ng-template #authenticated>
+
+</ng-template> -->
+    
+
+
+
 

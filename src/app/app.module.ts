@@ -16,7 +16,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
