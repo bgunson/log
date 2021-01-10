@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <img src="../assets/wood.png" id="log-logo">
+  <span id="logo-title">log</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  
+  <mat-sidenav #drawer class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <!-- <mat-toolbar><img src="../assets/cabin.png" id="log-logo"></mat-toolbar> -->
+    <div id="auth-div">
+      
+      <ngx-auth-firebaseui
+          [hidden]="isSignedIn"
+          [providers]="['google']"
+          [guestEnabled]="false"
+          (onSuccess)="signInUser($event)">
+      </ngx-auth-firebaseui>
+    
+      <ngx-auth-firebaseui-user
+        [hidden]="!isSignedIn"
+        (onAccountDeleted)="signOut()"
+        (onSignOut)="signOut()"
+        [canEditAccount]="false">
+      </ngx-auth-firebaseui-user>
+    
+    </div>  
+  
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <!-- Add Content Here -->
+    <app-dashboard></app-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>

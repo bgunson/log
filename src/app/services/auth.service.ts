@@ -20,7 +20,6 @@ export class AuthService {
       displayName: credentials.displayName,
       photoURL: credentials.photoURL
     }
-
     this.user = data;
   
   }

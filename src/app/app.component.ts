@@ -13,22 +13,9 @@ export class AppComponent implements OnInit {
 
   title = 'log';
 
-  signedIn: Boolean = false;
-  
-  signInUser(credentials) {
-    this.auth.signIn(credentials);
-    this.signedIn = true;
-
-    console.log(this.auth.user);
-  }
-
-  signOut() {
-    this.signedIn = false;    
-  }
-
   providers = AuthProvider;
 
-  constructor(public auth: AuthService) { }
+  constructor() { }
 
   
   ngOnInit() {
