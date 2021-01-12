@@ -4,8 +4,12 @@
 }
 
 .sidenav {
-  width: min-content;
+  padding-top: 60px;
+  width: 321px;
   position: fixed;
+  align-items: center;
+  display: flex;
+  text-align: center;
 }
 
 .sidenav .mat-toolbar {
@@ -18,21 +22,13 @@
   z-index: 10;
 }
 
-#auth-div {
-  padding-top: 60px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+#text-logo {
+  width: 4.5%;
 }
 
-#log-logo {
-  padding-right: 5px;
+.log-table-div {
+  padding: 50px;
 }
 
-
-#logo-title {
-  font-size: xx-large;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 

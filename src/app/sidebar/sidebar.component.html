@@ -8,7 +8,7 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <img src="../assets/wood.png" id="log-logo">
-  <span id="logo-title">log</span>
+  <img src="../assets/text-logo.png" id="text-logo">
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -18,27 +18,28 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <!-- <mat-toolbar><img src="../assets/cabin.png" id="log-logo"></mat-toolbar> -->
-    <div id="auth-div">
-      
+    <div [hidden]="isSignedIn">
       <ngx-auth-firebaseui
-          [hidden]="isSignedIn"
           [providers]="['google']"
           [guestEnabled]="false"
           (onSuccess)="signInUser($event)">
       </ngx-auth-firebaseui>
+    </div> 
     
-      <ngx-auth-firebaseui-user
-        [hidden]="!isSignedIn"
-        (onAccountDeleted)="signOut()"
-        (onSignOut)="signOut()"
-        [canEditAccount]="false">
-      </ngx-auth-firebaseui-user>
+      <div [hidden]="!isSignedIn">
+        
+        <ngx-auth-firebaseui-user
+          (onAccountDeleted)="signOut()"
+          (onSignOut)="signOut()"
+          [canEditAccount]="false">
+        </ngx-auth-firebaseui-user>
+      </div>
     
-    </div>  
+     
   
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
     <!-- Add Content Here -->
-    <app-dashboard></app-dashboard>
+    <div class="log-table-div"><app-log-table></app-log-table></div>
   </mat-sidenav-content>
 </mat-sidenav-container>
