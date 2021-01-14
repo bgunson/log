@@ -25,6 +25,7 @@ export class SidebarComponent {
     this.auth.signIn(credentials);
     this.isSignedIn = true;
   }
+  // test commit
 
   signOut() {
     this.isSignedIn = false;    
