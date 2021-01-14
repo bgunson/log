@@ -7,9 +7,6 @@
   padding-top: 60px;
   width: 321px;
   position: fixed;
-  align-items: center;
-  display: flex;
-  text-align: center;
 }
 
 .sidenav .mat-toolbar {
@@ -23,12 +20,24 @@
 }
 
 
-#text-logo {
-  width: 4.5%;
+.text-logo {
+  font-size:xx-large;
+  font-family:monospace;
+}
+
+#welcome-banner {
+  font-family: monospace;
 }
 
 .log-table-div {
   padding: 50px;
 }
 
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
 
+#login-register {
+  align-items: center;
+
+}

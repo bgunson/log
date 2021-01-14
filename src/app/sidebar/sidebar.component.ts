@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class SidebarComponent {
 
-  isSignedIn: Boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,16 +19,9 @@ export class SidebarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, public auth: AuthService) {}
-
-  signInUser(credentials) {
-    this.auth.signIn(credentials);
-    this.isSignedIn = true;
-  }
-  // test commit
-
-  signOut() {
-    this.isSignedIn = false;    
+  constructor(private breakpointObserver: BreakpointObserver, public auth: AngularFireAuth) {
+      
+  
   }
 
 }

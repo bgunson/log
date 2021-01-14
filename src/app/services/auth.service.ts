@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -8,9 +9,20 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 
+  authedUser: Boolean;
   user: User;
 
-  constructor() { } 
+  
+
+  constructor(
+    public afAuth: AngularFireAuth,
+    public afs: AngularFirestore
+  ) { 
+
+    
+    
+  }
+  
 
   signIn(credentials) {
 
@@ -20,8 +32,13 @@ export class AuthService {
       displayName: credentials.displayName,
       photoURL: credentials.photoURL
     }
-    this.user = data;
+    
+    
   
+  }
+
+  signOut() {
+    
   }
 
   

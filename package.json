@@ -27,6 +27,7 @@
     "@schematics/angular": "^9.1.0",
     "firebase": "^8.2.2",
     "ngx-auth-firebaseui": "^5.0.1",
+    "ngx-indexed-db": "^6.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

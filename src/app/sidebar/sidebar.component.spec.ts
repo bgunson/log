@@ -6,8 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { SidebarComponent } from './sidebar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -22,6 +24,8 @@ describe('SidebarComponent', () => {
         MatButtonModule,
         MatIconModule,
         MatListModule,
+        MatFormFieldModule,
+        MatSelectModule,
         MatSidenavModule,
         MatToolbarModule,
       ]

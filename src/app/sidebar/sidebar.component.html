@@ -8,34 +8,32 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <img src="../assets/wood.png" id="log-logo">
-  <img src="../assets/text-logo.png" id="text-logo">
-</mat-toolbar>
+  <span class="text-logo">log</span>
 
+  <span class="toolbar-spacer"></span>
+
+  <ngx-auth-firebaseui-avatar></ngx-auth-firebaseui-avatar>
+
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
+
+  
   
   <mat-sidenav #drawer class="sidenav" 
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <!-- <mat-toolbar><img src="../assets/cabin.png" id="log-logo"></mat-toolbar> -->
-    <div [hidden]="isSignedIn">
-      <ngx-auth-firebaseui
+
+    <div *ngIf="auth.user | async as user; else login">
+      <h3 id="welcome-banner">Hello, {{ user.displayName }}</h3>
+    </div>
+    
+    <ng-template #login>
+      <ngx-auth-firebaseui id="login-register"
           [providers]="['google']"
-          [guestEnabled]="false"
-          (onSuccess)="signInUser($event)">
+          [guestEnabled]="false">
       </ngx-auth-firebaseui>
-    </div> 
-    
-      <div [hidden]="!isSignedIn">
-        
-        <ngx-auth-firebaseui-user
-          (onAccountDeleted)="signOut()"
-          (onSignOut)="signOut()"
-          [canEditAccount]="false">
-        </ngx-auth-firebaseui-user>
-      </div>
-    
-     
+    </ng-template>  
   
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
