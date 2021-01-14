@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {AuthProvider} from 'ngx-auth-firebaseui';
-import { AuthService } from './services/auth.service';
 
 
 @Component({
