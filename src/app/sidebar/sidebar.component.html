@@ -17,27 +17,17 @@
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
 
-  
-  
   <mat-sidenav #drawer class="sidenav" 
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-
-    <div *ngIf="auth.user | async as user; else login">
-      <h3 id="welcome-banner">Hello, {{ user.displayName }}</h3>
-    </div>
     
-    <ng-template #login>
-      <ngx-auth-firebaseui id="login-register"
-          [providers]="['google']"
-          [guestEnabled]="false">
-      </ngx-auth-firebaseui>
-    </ng-template>  
-  
   </mat-sidenav>
+
   <mat-sidenav-content class="sidenav-content">
-    <!-- Add Content Here -->
-    <div class="log-table-div"><app-log-table></app-log-table></div>
+    <!-- Main Content -->
+    <div class="log-table-div">
+      <app-log-table></app-log-table>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

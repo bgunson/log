@@ -5,7 +5,7 @@
 
 .sidenav {
   padding-top: 60px;
-  width: 321px;
+  width: 250px;
   position: fixed;
 }
 
@@ -27,6 +27,7 @@
 
 #welcome-banner {
   font-family: monospace;
+  text-align: center;
 }
 
 .log-table-div {
@@ -39,5 +40,5 @@
 
 #login-register {
   align-items: center;
-
+  width: min-content;
 }
