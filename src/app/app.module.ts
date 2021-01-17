@@ -23,7 +23,10 @@ import { LogTableComponent } from './log-table/log-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreateLogComponent } from './create-log/create-log.component';
 
 
 
@@ -33,6 +36,8 @@ import { MatSortModule } from '@angular/material/sort';
     SidebarComponent,
     DashboardComponent,
     LogTableComponent,
+    CreateLogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,9 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,

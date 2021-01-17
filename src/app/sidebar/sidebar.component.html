@@ -21,7 +21,22 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    
+
+      <mat-list *ngIf="auth.user | async as user">
+        <mat-list-item id="welcome-banner">Hello, {{ user.displayName }}</mat-list-item>
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>Your Logs</mat-list-item>
+
+        <mat-list-item><small>{{ mes }}</small></mat-list-item>
+
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>
+          <button mat-raised-button color="accent" (click)="openDialog()">+ Create Log</button>
+        </mat-list-item>
+      </mat-list>
+
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-content">
@@ -31,3 +46,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

@@ -27,7 +27,7 @@
 
 #welcome-banner {
   font-family: monospace;
-  text-align: center;
+  font-weight: bold;
 }
 
 .log-table-div {
@@ -42,3 +42,5 @@
   align-items: center;
   width: min-content;
 }
+
+
