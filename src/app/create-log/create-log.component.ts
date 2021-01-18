@@ -1,16 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-log',
   templateUrl: './create-log.component.html',
   styleUrls: ['./create-log.component.css']
 })
-export class CreateLogComponent implements OnInit {
+export class CreateLogComponent {
 
-  constructor() { }
+  numFields = 0;
 
-  ngOnInit(): void {
+  
+  logform = new FormGroup({
+    identifier: new FormControl(''),
+    field1: new FormControl(''),
+    value1: new FormControl(''),
+  });
+  
+  /* this.fb.group({
+  
+    identifier: [null, Validators.compose([
+      Validators.required, Validators.minLength(2), Validators.maxLength(50)])
+    ],
+    
+    
+  }); */
+
+
+  states = [
+    {name: 'Make'},
+    {name: 'Model'},
+    {name: 'Year'},
+    {name: 'Name'},
+    {name: 'Colour'},
+    {name: 'Size'},
+    {name: 'Usage'},
+  ];
+
+  constructor(private fb: FormBuilder) {}
+
+  incrementFields() {
+    this.numFields++;
+    console.log(this.numFields);
   }
 
+  selection(event) {
+    console.log(event);
+  }
+
+  onSubmit() {
+    console.warn(this.logForm);
+  }
 }

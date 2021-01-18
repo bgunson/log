@@ -27,6 +27,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateLogComponent } from './create-log/create-log.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -84,6 +87,9 @@ import { CreateLogComponent } from './create-log/create-log.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
     
   ],
   providers: [],
