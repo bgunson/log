@@ -1,4 +1,36 @@
-<app-sidebar></app-sidebar>
+
+
+<div *ngIf="auth.user | async as user; else login" class="log-table-div">
+
+    <app-sidebar></app-sidebar>
+    
+  </div>
+  <ng-template #login>
+
+    <mat-toolbar color="primary">
+
+        <img src="../assets/wood.png" id="log-logo">
+        <span class="text-logo">log</span>
+      
+      </mat-toolbar>
+    
+    <ngx-auth-firebaseui-login
+        [hidden]="!showLogin"
+        [providers]="['google']"
+        [guestEnabled]="false"
+        (onCreateAccountRequested)="toggleView()">
+    </ngx-auth-firebaseui-login>
+
+    <ngx-auth-firebaseui-register
+        [hidden]="showLogin"
+        [providers]="['google']"
+        [guestEnabled]="false"
+        (onLoginRequested)="toggleView()">
+    </ngx-auth-firebaseui-register>
+    
+  </ng-template>  
+
+<!-- <app-sidebar></app-sidebar> -->
 
 
 
