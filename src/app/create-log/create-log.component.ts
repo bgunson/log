@@ -1,5 +1,8 @@
 import { Component, ɵConsole } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-create-log',
@@ -7,6 +10,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./create-log.component.css']
 })
 export class CreateLogComponent {
+
+  user: any;
 
   numFields = 0;
 
@@ -47,7 +52,11 @@ export class CreateLogComponent {
     {name: 'Year'},
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: AngularFirestore, private auth: AngularFireAuth) {
+    auth.authState.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   
 
@@ -69,9 +78,8 @@ export class CreateLogComponent {
     this.logForm.get("value_" + index).reset();
     this.logForm.get("field_" + index).reset();
 
-
   }
-  
+
 
   selection(event) {
     console.log(event);
@@ -80,7 +88,34 @@ export class CreateLogComponent {
   onSubmit() {
     
     var logObject = this.logForm.getRawValue();
-    console.log(this.logForm.get('identifier').value);
+    alert("id: " + this.logForm.get('identifier').value +
+          "\nfield_0: " + this.logForm.get('field_0').value +
+          ", value_0: " + this.logForm.get('value_0').value +
+          "\nfield_1: " + this.logForm.get('field_1').value +
+          ", value_1: " + this.logForm.get('value_1').value +
+          "\nfield_2: " + this.logForm.get('field_2').value +
+          ", value_2: " + this.logForm.get('value_2').value +
+          "\nfield_3: " + this.logForm.get('field_3').value +
+          ", value_3: " + this.logForm.get('value_3').value +
+          "\nfield_4: " + this.logForm.get('field_4').value +
+          ", value_4: " + this.logForm.get('value_4').value
+          );
+
+    var id = this.logForm.get('identifier').value;
     
+
+    // TODO: add object to firestore
+
+    //this.store.collection('logs/${this.user.uid}').add(this.logForm.get('identifier').value);
+
+    /* const userLogs = this.store.collection('app/logs/${this.user.uid}');
+    userLogs. */
+    /* this.store.collection('app/logs/${this.user.uid}').add({name: "test"}).then(function() {
+      console.log("added to db");
+    }).catch(function() {
+      console.warn("couldnt add to db");
+    });
+     */
+
   }
 }
