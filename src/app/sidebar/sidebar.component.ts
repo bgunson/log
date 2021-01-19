@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormControl, Validators } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateLogComponent } from '../create-log/create-log.component';
 
@@ -24,9 +22,6 @@ export class SidebarComponent {
       shareReplay()
     );
 
-<<<<<<< HEAD
-  constructor(private breakpointObserver: BreakpointObserver, public auth: AngularFireAuth) { }
-=======
   constructor(
     private breakpointObserver: BreakpointObserver, 
     public auth: AngularFireAuth, private store: AngularFirestore,
@@ -36,7 +31,6 @@ export class SidebarComponent {
   openDialog() {
     const dialogRef = this.dialog.open(CreateLogComponent);
   }
->>>>>>> 234310689cb7f8237fdab43978f0b0358240b8f5
 
 
 }
