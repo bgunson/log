@@ -71,6 +71,7 @@ export class CreateLogComponent {
 
 
   }
+  
 
   selection(event) {
     console.log(event);
