@@ -2,27 +2,4 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
+Log is a simple record keeping application I am building with the intention of tracking the maintenence I perform to my vehicle but can be ultimately be used to track many objects and their progression. I intend to include the ability for the user to create different "logs" representing the object they wish to keep a record for. One log could be your vehicle, your bike or whatever; upon creation the user will add attributes to identify their new log. Within said log, the user can define different devices to track the object; initially the user will be able to create data tables, todo lists or just a scratch pad to keep notes. All user created data will be written to a firebase databse (if they have created an account) that way this data can be accessed from multiple devices anywhere. 
