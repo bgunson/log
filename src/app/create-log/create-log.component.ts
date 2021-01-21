@@ -63,8 +63,7 @@ export class CreateLogComponent {
 
   addField() {
     this.numFields++;
-    var i;
-    for (i = 0; i < this.fieldsAdded.length; i++) {
+    for (var i = 0; i < this.fieldsAdded.length; i++) {
       if (this.fieldsAdded[i] == false) {
         this.fieldsAdded[i] = true;
         break;
@@ -72,7 +71,7 @@ export class CreateLogComponent {
     }
   }
 
-  removeField(index) {
+  removeField(index: number) {
     this.numFields -= 1;
     this.fieldsAdded[index] = false;
     
@@ -86,37 +85,33 @@ export class CreateLogComponent {
     console.log(event);
   }
 
+
   onSubmit() {
     
-    var logObject = this.logForm.getRawValue();
-    alert("id: " + this.logForm.get('identifier').value +
-          "\nfield_0: " + this.logForm.get('field_0').value +
-          ", value_0: " + this.logForm.get('value_0').value +
-          "\nfield_1: " + this.logForm.get('field_1').value +
-          ", value_1: " + this.logForm.get('value_1').value +
-          "\nfield_2: " + this.logForm.get('field_2').value +
-          ", value_2: " + this.logForm.get('value_2').value +
-          "\nfield_3: " + this.logForm.get('field_3').value +
-          ", value_3: " + this.logForm.get('value_3').value +
-          "\nfield_4: " + this.logForm.get('field_4').value +
-          ", value_4: " + this.logForm.get('value_4').value
-          );
+    let uid: string = this.user.uid;
+    let logId: string = this.logForm.get('identifier').value;
 
-    var id = this.logForm.get('identifier').value;
-    var uid = this.user.uid;
-    var field_0 = this.logForm.get('field_0').value;
-    var value_0 = this.logForm.get('value_0').value;
+    const logData = {
+      id: logId
+    }
+
+    // Make sure we are only added non-empty fields/values to logData object
+    for (var i = 0; i < this.fieldsAdded.length; i++) {
+      let f: string = this.logForm.get('field_' + i).value
+      if (this.fieldsAdded[i] && f != "") {
+        logData[f] = this.logForm.get('value_' + i).value;
+      }
+    }
 
     // TODO: 
-    // - make confi gobject json so we cna emmit empty fields/values
     // - put check box on form asking user whether ther new log should be theor default
-    // - Check for existing collection(id) and warn user if one exists    
+    // - Check for existing collection(id) and warn user if one exists
+    // - Set validators for value_i if field_i onSelectionChange()
     
-
-    this.store.doc('logs/' + uid).collection(id).doc('config').set({
-      id: id,
-      [field_0]: value_0
-    }).then(res => {
+    // Put log in data base 
+    this.store.doc('logs/' + uid).collection(logId).doc('config').set(
+      logData
+    ).then(res => {
       console.log(res);
     }).catch(e => {
       console.log(e);
