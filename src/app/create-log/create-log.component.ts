@@ -2,7 +2,6 @@ import { Component, ɵConsole } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-create-log',
@@ -16,6 +15,8 @@ export class CreateLogComponent {
   numFields = 0;
 
   fieldsAdded = [true, false, false, false, false]
+
+  // TODO: add form control to default checkbox
   
   logForm = this.fb.group({
   
@@ -106,8 +107,10 @@ export class CreateLogComponent {
     var field_0 = this.logForm.get('field_0').value;
     var value_0 = this.logForm.get('value_0').value;
 
-    // TODO: make confi gobject json so we cna emmit empty fields/values
-
+    // TODO: 
+    // - make confi gobject json so we cna emmit empty fields/values
+    // - put check box on form asking user whether ther new log should be theor default
+    // - Check for existing collection(id) and warn user if one exists    
     
 
     this.store.doc('logs/' + uid).collection(id).doc('config').set({

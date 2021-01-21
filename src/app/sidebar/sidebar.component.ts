@@ -14,6 +14,13 @@ import { CreateLogComponent } from '../create-log/create-log.component';
 })
 export class SidebarComponent {
 
+  // TODO:
+  // - query /logs/uid collections from db, display on side menu
+  //    -> if none, show some sort of usage case in main area 
+  // - load user default log to main content area
+  //    -> if no sublogs (table, todo, etc) then show a widget style display
+  //       giving the user choice of sublog they can create
+
   mes = "- You dont have any logs";
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
