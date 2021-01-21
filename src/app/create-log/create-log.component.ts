@@ -102,20 +102,22 @@ export class CreateLogComponent {
           );
 
     var id = this.logForm.get('identifier').value;
+    var uid = this.user.uid;
+    var field_0 = this.logForm.get('field_0').value;
+    var value_0 = this.logForm.get('value_0').value;
+
+    // TODO: make confi gobject json so we cna emmit empty fields/values
+
     
 
-    // TODO: add object to firestore
-
-    //this.store.collection('logs/${this.user.uid}').add(this.logForm.get('identifier').value);
-
-    /* const userLogs = this.store.collection('app/logs/${this.user.uid}');
-    userLogs. */
-    /* this.store.collection('app/logs/${this.user.uid}').add({name: "test"}).then(function() {
-      console.log("added to db");
-    }).catch(function() {
-      console.warn("couldnt add to db");
+    this.store.doc('logs/' + uid).collection(id).doc('config').set({
+      id: id,
+      [field_0]: value_0
+    }).then(res => {
+      console.log(res);
+    }).catch(e => {
+      console.log(e);
     });
-     */
 
   }
 }
