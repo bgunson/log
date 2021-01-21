@@ -88,10 +88,10 @@ export class CreateLogComponent {
 
   onSubmit() {
     
-    let uid: string = this.user.uid;
-    let logId: string = this.logForm.get('identifier').value;
+    const uid: string = this.user.uid;
+    const logId: string = this.logForm.get('identifier').value;
 
-    const logData = {
+    let logData = {
       id: logId
     }
 
