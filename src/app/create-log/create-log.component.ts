@@ -88,8 +88,10 @@ export class CreateLogComponent {
 
   onSubmit() {
     
+    
     const uid: string = this.user.uid;
     const logId: string = this.logForm.get('identifier').value;
+    var userLogs: string[] = [];
 
     let logData = {
       id: logId
@@ -107,15 +109,36 @@ export class CreateLogComponent {
     // - put check box on form asking user whether ther new log should be theor default
     // - Check for existing collection(id) and warn user if one exists
     // - Set validators for value_i if field_i onSelectionChange()
+
+    this.store.doc('logs/' + uid).get().subscribe(ref => {
+
+      if (!ref.exists) {
+        // Users first log
+        userLogs = [logId];        
+
+      } else {
+
+        userLogs = ref.get('logs');
+        userLogs.push(logId);
+        console.log(userLogs);
+      }
+
+    });
+
+    // Push updated userLogs to logs/uid doc
+    // TODO fx this
+    this.store.doc('logs/' + uid).set({
+      logs: userLogs,
+    });
     
     // Put log in data base 
-    this.store.doc('logs/' + uid).collection(logId).doc('config').set(
+    /* this.store.doc('logs/' + uid).collection(logId).doc('config').set(
       logData
     ).then(res => {
       console.log(res);
     }).catch(e => {
       console.log(e);
-    });
+    }); */
 
   }
 }

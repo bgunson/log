@@ -27,7 +27,15 @@
         <mat-divider></mat-divider>
         
         <mat-list-item>Your Logs</mat-list-item>
-        <mat-list-item><small>{{ mes }}</small></mat-list-item>
+
+        <mat-divider></mat-divider>
+        
+        <mat-selection-list #shoes [multiple]="false">
+          <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+            {{shoe}}
+          </mat-list-option>
+        </mat-selection-list>
+      
 
         <mat-divider></mat-divider>
         

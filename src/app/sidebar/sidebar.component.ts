@@ -22,6 +22,11 @@ export class SidebarComponent {
   //       giving the user choice of sublog they can create
 
   mes = "- You dont have any logs";
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  
+  user: any;
+  selectedLog: string; // init do 'default' in logs/uid
+  
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -33,7 +38,15 @@ export class SidebarComponent {
     private breakpointObserver: BreakpointObserver, 
     public auth: AngularFireAuth, private store: AngularFirestore,
     public dialog: MatDialog
-    ) {}
+    ) {
+      auth.authState.subscribe(user => {
+        this.user = user;
+      });
+
+      
+    }
+
+  
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateLogComponent);
