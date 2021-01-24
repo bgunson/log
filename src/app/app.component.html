@@ -4,33 +4,32 @@
 
     <app-sidebar></app-sidebar>
     
-  </div>
-  <ng-template #login>
+</div>
+<ng-template #login>
 
-    <mat-toolbar color="primary">
+  <mat-toolbar color="primary">
 
-        <img src="../assets/wood.png" id="log-logo">
-        <span class="text-logo">log</span>
-      
-      </mat-toolbar>
+    <img src="../assets/wood.png" id="log-logo">
+    <span class="text-logo">log</span>
     
-    <ngx-auth-firebaseui-login
-        [hidden]="!showLogin"
-        [providers]="['google']"
-        [guestEnabled]="false"
-        (onCreateAccountRequested)="toggleView()">
-    </ngx-auth-firebaseui-login>
+  </mat-toolbar>
+  
+  <ngx-auth-firebaseui-login
+      [hidden]="!showLogin"
+      [providers]="['google']"
+      [guestEnabled]="false"
+      (onCreateAccountRequested)="toggleView()">
+  </ngx-auth-firebaseui-login>
 
-    <ngx-auth-firebaseui-register
-        [hidden]="showLogin"
-        [providers]="['google']"
-        [guestEnabled]="false"
-        (onLoginRequested)="toggleView()">
-    </ngx-auth-firebaseui-register>
-    
-  </ng-template>  
+  <ngx-auth-firebaseui-register
+      [hidden]="showLogin"
+      [providers]="['google']"
+      [guestEnabled]="false"
+      (onLoginRequested)="toggleView()">
+  </ngx-auth-firebaseui-register>
+  
+</ng-template>  
 
-<!-- <app-sidebar></app-sidebar> -->
 
 
 

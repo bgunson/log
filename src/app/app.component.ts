@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
 
   providers = AuthProvider;
 
-  constructor(public auth: AngularFireAuth) {
-
+  constructor(public auth: AngularFireAuth, public authService: AuthService) {
+    
   }
 
   toggleView() {

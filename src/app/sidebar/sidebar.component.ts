@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
+import { AuthService } from '../auth.service';
 
 export interface LogArray { userLogs: string[]; }
 
@@ -25,14 +26,10 @@ export class SidebarComponent {
   // - load user default log to main content area
   //    -> if no sublogs (table, todo, etc) then show a widget style display
   //       giving the user choice of sublog they can create
-  // - when user deletes account: clear local storage and deauth from firebase
 
-  mes = "- You dont have any logs";
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  user: string = localStorage.getItem('uid');
+  user: any;
   selectedLog: string; // init do 'default' in logs/uid - from localStorage
-  //logArray: Observable<LogArray>;
-  userLogs: any;
+  userLogs: string[];
   
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -44,21 +41,20 @@ export class SidebarComponent {
   constructor(
     private breakpointObserver: BreakpointObserver, 
     public auth: AngularFireAuth, private store: AngularFirestore,
-    public dialog: MatDialog
+    public dialog: MatDialog, private authService: AuthService
     ) {
+      this.user = authService.user;
+      console.log("uid: " + authService.user.uid);
 
-      auth.authState.subscribe(user => {
-        localStorage.setItem("uid", user.uid);
+      store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
+        if (ref.exists) {
+          //console.log(ref.get('userLogs'));
+          this.userLogs = ref.get('userLogs');
+        } else {
+          this.userLogs = [];
+        }
       });
-
-      // we have uid form local storage
-      console.log(this.user);
-
-  }
-
-  signUserOut() {
-    console.log("sign out user");
-    localStorage.clear();
+      
   }
 
   openDialog() {
