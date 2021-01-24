@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {AuthProvider} from 'ngx-auth-firebaseui';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { User } from './models/user.model';
 
 
 @Component({
@@ -17,11 +21,14 @@ export class AppComponent implements OnInit {
 
   providers = AuthProvider;
 
-  constructor(public auth: AngularFireAuth) { }
+  constructor(public auth: AngularFireAuth) {
+
+  }
 
   toggleView() {
     this.showLogin = !this.showLogin;
   }
+
 
   
   ngOnInit() {

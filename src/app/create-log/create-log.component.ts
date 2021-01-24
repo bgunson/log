@@ -2,6 +2,7 @@ import { Component, ɵConsole } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-create-log',
@@ -10,7 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class CreateLogComponent {
 
-  user: any;
+  uid: string = localStorage.getItem('uid');
 
   numFields = 0;
 
@@ -53,10 +54,8 @@ export class CreateLogComponent {
     {name: 'Year'},
   ];
 
-  constructor(private fb: FormBuilder, private store: AngularFirestore, private auth: AngularFireAuth) {
-    auth.authState.subscribe(user => {
-      this.user = user;
-    });
+  constructor(private fb: FormBuilder, private store: AngularFirestore) {
+    
   }
 
   
@@ -89,56 +88,45 @@ export class CreateLogComponent {
   onSubmit() {
     
     
-    const uid: string = this.user.uid;
+    const docPath = `logs/${this.uid}`;
     const logId: string = this.logForm.get('identifier').value;
     var userLogs: string[] = [];
 
-    let logData = {
-      id: logId
-    }
+  
 
     // Make sure we are only added non-empty fields/values to logData object
+
+    let attributeObject = {};
+
+
     for (var i = 0; i < this.fieldsAdded.length; i++) {
       let f: string = this.logForm.get('field_' + i).value
       if (this.fieldsAdded[i] && f != "") {
-        logData[f] = this.logForm.get('value_' + i).value;
+        attributeObject[f] = this.logForm.get('value_' + i).value
       }
     }
+
+    console.log(attributeObject);
+
 
     // TODO: 
     // - put check box on form asking user whether ther new log should be theor default
     // - Check for existing collection(id) and warn user if one exists
     // - Set validators for value_i if field_i onSelectionChange()
+    // - store user defined default login local storage
+    // - try to query collection ids instead of storing log array at 'logs/uid' doc
 
-    this.store.doc('logs/' + uid).get().subscribe(ref => {
-
-      if (!ref.exists) {
-        // Users first log
-        userLogs = [logId];        
-
-      } else {
-
-        userLogs = ref.get('logs');
-        userLogs.push(logId);
-        console.log(userLogs);
-      }
-
-    });
-
-    // Push updated userLogs to logs/uid doc
-    // TODO fx this
-    this.store.doc('logs/' + uid).set({
-      logs: userLogs,
-    });
     
-    // Put log in data base 
-    /* this.store.doc('logs/' + uid).collection(logId).doc('config').set(
-      logData
-    ).then(res => {
+    
+    // Put log in users logs and set config
+    this.store.doc(docPath).collection(logId).doc('config').set({
+      id: logId,
+      attributes: attributeObject
+    }).then(res => {
       console.log(res);
     }).catch(e => {
       console.log(e);
-    }); */
+    });
 
   }
 }
