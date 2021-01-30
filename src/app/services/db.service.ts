@@ -1,9 +1,62 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Log } from '../models/log.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
 
-  constructor() { }
+  user: any;
+
+  constructor(private store: AngularFirestore, private authService: AuthService) { 
+    this.user = authService.user;
+  }
+
+
+  addLog(log: Log) {
+    console.log(log);
+
+    let attributeObject = log.attributes;
+    var docPath = `logs/${this.user.uid}`;
+    var logId: string = log.id;
+    var userLogs: string[] = [];
+
+    // TODO: 
+    // - put check box on form asking user whether ther new log should be theor default
+    // - Check for existing collection(id) and warn user if one exists
+    // - Set validators for value_i if field_i onSelectionChange()
+    // - store user defined default login local storage
+    // - try to query collection ids instead of storing log array at 'logs/uid' doc
+
+    this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
+      if (ref.exists) {
+        //console.log(ref.get('userLogs'));
+        userLogs = ref.get('userLogs');
+        userLogs.push(logId);
+        this.store.doc(`logs/${this.user.uid}`).update({
+        userLogs: userLogs
+        });
+      } else {
+        userLogs.push(logId);
+        this.store.doc(`logs/${this.user.uid}`).set({
+          userLogs: userLogs
+        });      
+      }
+    });
+
+    
+    
+    // Put log in users logs and set config
+    this.store.doc(docPath).collection(logId).doc('config').set({
+      id: logId,
+      attributes: attributeObject
+    }).then(res => {
+      console.log(res);
+    }).catch(e => {
+      console.log(e);
+    });
+  }
+
 }

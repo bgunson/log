@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/user.model';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-create-log',
@@ -55,7 +55,7 @@ export class CreateLogComponent {
     {name: 'Year'},
   ];
 
-  constructor(private fb: FormBuilder, private store: AngularFirestore, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private dbService: DbService, private authService: AuthService) {
 
     this.user = authService.user;
     
@@ -89,11 +89,7 @@ export class CreateLogComponent {
 
   onSubmit() {
     
-    const docPath = `logs/${this.user.uid}`;
     const logId: string = this.logForm.get('identifier').value;
-    var userLogs: string[] = [];
-
-  
 
     // Make sure we are only added non-empty fields/values to logData object
 
@@ -107,41 +103,12 @@ export class CreateLogComponent {
       }
     }
 
-
-    // TODO: 
-    // - put check box on form asking user whether ther new log should be theor default
-    // - Check for existing collection(id) and warn user if one exists
-    // - Set validators for value_i if field_i onSelectionChange()
-    // - store user defined default login local storage
-    // - try to query collection ids instead of storing log array at 'logs/uid' doc
-
-    this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
-      if (ref.exists) {
-        //console.log(ref.get('userLogs'));
-        userLogs = ref.get('userLogs');
-        userLogs.push(logId);
-        this.store.doc(`logs/${this.user.uid}`).update({
-        userLogs: userLogs
-        });
-      } else {
-        userLogs.push(logId);
-        this.store.doc(`logs/${this.user.uid}`).set({
-          userLogs: userLogs
-        });      
-      }
-    });
-
-    
-    
-    // Put log in users logs and set config
-    this.store.doc(docPath).collection(logId).doc('config').set({
+    let logObject = {
       id: logId,
       attributes: attributeObject
-    }).then(res => {
-      console.log(res);
-    }).catch(e => {
-      console.log(e);
-    });
+    }
+
+    this.dbService.addLog(logObject);
 
   }
 }

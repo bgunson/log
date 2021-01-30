@@ -1,8 +1,8 @@
-export interface Log {
+export class Log {
     id: string;
     attributes: Attributes;
     
 }
 
-interface Attributes { }
+class Attributes { }
 
