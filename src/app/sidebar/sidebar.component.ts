@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 export interface LogArray { userLogs: string[]; }
 
@@ -40,11 +40,12 @@ export class SidebarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver, 
-    public auth: AngularFireAuth, private store: AngularFirestore,
-    public dialog: MatDialog, private authService: AuthService
+    private store: AngularFirestore,
+    public dialog: MatDialog, 
+    public authService: AuthService
     ) {
       this.user = authService.user;
-      console.log("uid: " + authService.user.uid);
+      //console.log("uid: " + authService.user.uid);
 
       store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
         if (ref.exists) {

@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {AuthProvider} from 'ngx-auth-firebaseui';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { User } from './models/user.model';
 
 
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
   providers = AuthProvider;
 
-  constructor(public auth: AngularFireAuth, public authService: AuthService) {
+  constructor(public authService: AuthService) {
     
   }
 

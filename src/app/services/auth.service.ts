@@ -9,7 +9,7 @@ export class AuthService {
 
   user: any;
 
-  constructor(private auth: AngularFireAuth) { 
+  constructor(public auth: AngularFireAuth) { 
     console.log("new auth service");
     auth.onAuthStateChanged(res =>{
       this.user = res;

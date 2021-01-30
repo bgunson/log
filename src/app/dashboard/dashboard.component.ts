@@ -31,5 +31,5 @@ export class DashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, public auht: AngularFireAuth) {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
 }
