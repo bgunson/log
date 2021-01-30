@@ -26,9 +26,6 @@ export class DbService {
     // TODO: 
     // - put check box on form asking user whether ther new log should be theor default
     // - Check for existing collection(id) and warn user if one exists
-    // - Set validators for value_i if field_i onSelectionChange()
-    // - store user defined default login local storage
-    // - try to query collection ids instead of storing log array at 'logs/uid' doc
 
     this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
       if (ref.exists) {
