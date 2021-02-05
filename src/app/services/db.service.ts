@@ -21,27 +21,27 @@ export class DbService {
     let attributeObject = log.attributes;
     var docPath = `logs/${this.user.uid}`;
     var logId: string = log.id;
-    var userLogs: string[] = [];
+    var userLogArray: string[] = [];
 
     // TODO: 
     // - put check box on form asking user whether ther new log should be theor default
     // - Check for existing collection(id) and warn user if one exists
     // - Set validators for value_i if field_i onSelectionChange()
-    // - store user defined default login local storage
-    // - try to query collection ids instead of storing log array at 'logs/uid' doc
+    // - default will be based on ordering of userLogs array
+    
 
     this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
       if (ref.exists) {
-        //console.log(ref.get('userLogs'));
-        userLogs = ref.get('userLogs');
-        userLogs.push(logId);
+        console.log("found ref");
+        userLogArray = ref.get('userLogs');
+        userLogArray.push(logId);
         this.store.doc(`logs/${this.user.uid}`).update({
-        userLogs: userLogs
+        userLogs: userLogArray
         });
       } else {
-        userLogs.push(logId);
+        userLogArray = [logId];
         this.store.doc(`logs/${this.user.uid}`).set({
-          userLogs: userLogs
+          userLogs: userLogArray
         });      
       }
     });
