@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Log } from '../models/log.model';
 import { AuthService } from './auth.service';
+
+export interface LogDoc { logArray?: string[]; }
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +13,13 @@ export class DbService {
 
   user: any;
 
-  constructor(private store: AngularFirestore, private authService: AuthService) { 
+  constructor(private store: AngularFirestore, private authService: AuthService) {
+    console.log("new db service");
     this.user = authService.user;
+  
   }
 
-
   addLog(log: Log) {
-    console.log(log);
-
     let attributeObject = log.attributes;
     var docPath = `logs/${this.user.uid}`;
     var logId: string = log.id;
@@ -29,7 +31,7 @@ export class DbService {
 
     this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
       if (ref.exists) {
-        console.log("found ref");
+        //console.log("found ref");
         userLogArray = ref.get('userLogs');
         userLogArray.push(logId);
         this.store.doc(`logs/${this.user.uid}`).update({
@@ -44,12 +46,8 @@ export class DbService {
     });
 
     
-    
     // Put log in users logs and set config
-    this.store.doc(docPath).collection(logId).doc('config').set({
-      id: logId,
-      attributes: attributeObject
-    }).then(res => {
+    this.store.doc(docPath).collection(logId).doc('config').set(log).then(res => {
       console.log(res);
     }).catch(e => {
       console.log(e);
