@@ -2,6 +2,7 @@ import { Component, ɵConsole } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 
@@ -55,7 +56,12 @@ export class CreateLogComponent {
     {name: 'Year'},
   ];
 
-  constructor(private fb: FormBuilder, private dbService: DbService, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private dbService: DbService, 
+    private authService: AuthService,
+    public dialogRef: MatDialogRef<CreateLogComponent>
+    ) {
 
     this.user = authService.user;
     
@@ -109,6 +115,8 @@ export class CreateLogComponent {
     }
 
     this.dbService.addLog(logObject);
+
+    this.dialogRef.close();
 
   }
 }

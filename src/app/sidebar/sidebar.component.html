@@ -26,7 +26,12 @@
         <mat-list-item id="welcome-banner">Hello, {{ user.displayName }}</mat-list-item>
         <mat-divider></mat-divider>
         
-        <mat-list-item>Your Logs</mat-list-item>
+        <mat-list-item>Your Logs
+          <span class="sidenav-spacer"></span>
+          <button style="justify-self: flex-end;" mat-icon-button color="accent" aria-label="" (click)="openDialog()">
+            <i class="material-icons">add_circle_outline</i>
+          </button>
+        </mat-list-item>
 
         <mat-divider></mat-divider>
         
@@ -37,13 +42,7 @@
             {{ log }}
           </mat-list-option>
         </mat-selection-list>
-      
-
-        <mat-divider></mat-divider>
-        
-        <mat-list-item>
-          <button mat-raised-button color="accent" (click)="openDialog()">+ New Log</button>
-        </mat-list-item>
+    
       </mat-list>
 
   </mat-sidenav>
