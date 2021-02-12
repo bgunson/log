@@ -6,8 +6,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectio
 import { MatDialog } from '@angular/material/dialog';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { AuthService } from '../services/auth.service';
+import { Log } from '../models/log.model';
 
-export interface LogDoc { userLogs: string[]; }
 
 @Component({
   selector: 'app-sidebar',
@@ -23,9 +23,9 @@ export class SidebarComponent {
   //       giving the user choice of sublog they can create
 
   user: any;
-  logRef: AngularFirestoreDocument<LogDoc>;
-  logs: Observable<LogDoc>;
-  logList: string[] = [];
+  logRef: AngularFirestoreCollection<Log>;
+  logs: Observable<Log[]>;
+  showSpinner: boolean = true;
   
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -51,12 +51,9 @@ export class SidebarComponent {
   }
 
   ngOnInit() {
-    this.logRef = this.store.doc(`logs/${this.user.uid}`);
+    this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();
-    this.logs.subscribe(res => {
-      this.logList = res.userLogs;
-    })
-    
+    this.logs.subscribe(() => this.showSpinner = false);
   }
 
 }

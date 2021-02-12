@@ -32,22 +32,24 @@
             <i class="material-icons">add_circle_outline</i>
           </button>
         </mat-list-item>
-
         
-        <mat-list-item *ngIf="logList == 0" ><small>You do not have any logs.</small></mat-list-item>
+        <mat-list-item *ngIf="showSpinner"><mat-spinner [diameter]="30"></mat-spinner> </mat-list-item>
+               
+        <!-- <mat-list-item *ngIf="logList == 0" ><small>You do not have any logs.</small></mat-list-item> -->
 
-        <mat-accordion *ngFor="let log of logList">
-          <mat-expansion-panel hideToggle>
-            
-          </mat-expansion-panel>
+        <mat-accordion *ngFor="let log of logs | async">
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{ log }}
+                {{ log.id }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
+            <div *ngFor="let item of log.attributes | keyvalue">
+              <small>{{item.key}}: {{item.value}}</small>
+            </div>
+            <button mat-stroked-button color="primary">Select</button>
+            <button mat-stroked-button color="warn">Delete</button>
           </mat-expansion-panel>
         </mat-accordion>
 

@@ -21,7 +21,7 @@ export class DbService {
 
   addLog(log: Log) {
     let attributeObject = log.attributes;
-    var docPath = `logs/${this.user.uid}`;
+    var docPath = `users/${this.user.uid}`;
     var logId: string = log.id;
     var userLogArray: string[] = [];
 
@@ -29,7 +29,8 @@ export class DbService {
     // - put check box on form asking user whether ther new log should be theor default
     // - Check for existing collection(id) and warn user if one exists
 
-    this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
+    // For log array may not need
+    /* this.store.doc(`logs/${this.user.uid}`).get().subscribe(ref => {
       if (ref.exists) {
         //console.log("found ref");
         userLogArray = ref.get('userLogs');
@@ -43,11 +44,11 @@ export class DbService {
           userLogs: userLogArray
         });      
       }
-    });
+    }); */
 
     
     // Put log in users logs and set config
-    this.store.doc(docPath).collection(logId).doc('config').set(log).then(res => {
+    this.store.doc(docPath).collection('logs').doc(logId).set(log).then(res => {
       console.log(res);
     }).catch(e => {
       console.log(e);

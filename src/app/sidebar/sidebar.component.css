@@ -27,7 +27,6 @@
 
 #welcome-banner {
   font-family: monospace;
-  font-weight: bold;
 }
 
 .log-table-div {
@@ -46,5 +45,9 @@
 #your-logs {
   font-size: larger;
 }
+
+/* mat-panel-title {
+  font-family: monospace;
+} */
 
 
