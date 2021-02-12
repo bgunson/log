@@ -7,6 +7,7 @@
 
 ### General
 - upon load (no log selected) user see main page with all logs in separate widgets, like firebase console displays your projects. Can select existing log or add new one from main section.
+- When user deletes account, make sure account and credentials are removed from firebase auth and firestore
 
 ### Log Creation
 - User can add data section (table, todo, scratch) for selected log
@@ -14,3 +15,4 @@
 
 ### Log Deletion 
 - When user deletes log, removed from database, sidebar updates upon deletion
+- When user deletes account, all logs are removed from database
