@@ -26,22 +26,41 @@
         <mat-list-item id="welcome-banner">Hello, {{ user.displayName }}</mat-list-item>
         <mat-divider></mat-divider>
         
-        <mat-list-item>Your Logs
-          <span class="sidenav-spacer"></span>
-          <button style="justify-self: flex-end;" mat-icon-button color="accent" aria-label="" (click)="openDialog()">
+        <mat-list-item><span id="your-logs">Logs</span>
+          <span class="toolbar-spacer"></span>
+          <button mat-icon-button color="accent" aria-label="" (click)="openDialog()">
             <i class="material-icons">add_circle_outline</i>
           </button>
         </mat-list-item>
 
-        <mat-divider></mat-divider>
         
-        <mat-list-item *ngIf="userLogs == 0" ><small>You do not have any logs.</small></mat-list-item>
+        <mat-list-item *ngIf="logList == 0" ><small>You do not have any logs.</small></mat-list-item>
 
-        <mat-selection-list #showLogs [multiple]="false">
-          <mat-list-option *ngFor="let log of userLogs" [value]="log">
+        <mat-accordion *ngFor="let log of logList">
+          <mat-expansion-panel hideToggle>
+            
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ log }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- <mat-selection-list #showLogs [multiple]="false">
+          <mat-list-option *ngFor="let log of logList" [value]="log">
             {{ log }}
+            <span class="toolbar-spacer"></span>
+            <i class="material-icons">expand_more</i>
           </mat-list-option>
-        </mat-selection-list>
+        </mat-selection-list> -->
+
+
+        <mat-divider></mat-divider>
     
       </mat-list>
 
@@ -53,7 +72,7 @@
 
     <!-- Main Content -->
     <div class="log-table-div">
-      <app-log-table></app-log-table>
+      <app-dashboard></app-dashboard>
     </div>
 
   </mat-sidenav-content>

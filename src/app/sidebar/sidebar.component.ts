@@ -25,7 +25,7 @@ export class SidebarComponent {
   user: any;
   logRef: AngularFirestoreDocument<LogDoc>;
   logs: Observable<LogDoc>;
-  userLogs: string[];
+  logList: string[] = [];
   
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -54,7 +54,7 @@ export class SidebarComponent {
     this.logRef = this.store.doc(`logs/${this.user.uid}`);
     this.logs = this.logRef.valueChanges();
     this.logs.subscribe(res => {
-      this.userLogs = res.userLogs;
+      this.logList = res.userLogs;
     })
     
   }
