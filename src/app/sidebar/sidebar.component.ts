@@ -51,7 +51,7 @@ export class SidebarComponent {
   }
 
   ngOnInit() {
-    this.logRef = this.store.collection(`logs/${this.user.uid}/logs`);
+    this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();
     this.logs.subscribe(() => this.showSpinner = false);
   }

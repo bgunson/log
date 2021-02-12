@@ -38,9 +38,6 @@
         <!-- <mat-list-item *ngIf="logList == 0" ><small>You do not have any logs.</small></mat-list-item> -->
 
         <mat-accordion *ngFor="let log of logs | async">
-          <mat-expansion-panel hideToggle>
-            
-          </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -51,6 +48,8 @@
             <div *ngFor="let item of log.attributes | keyvalue">
               <small>{{item.key}}: {{item.value}}</small>
             </div>
+            <button mat-stroked-button color="primary">Select</button>
+            <button mat-stroked-button color="warn">Delete</button>
           </mat-expansion-panel>
         </mat-accordion>
 

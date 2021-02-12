@@ -21,7 +21,7 @@ export class DbService {
 
   addLog(log: Log) {
     let attributeObject = log.attributes;
-    var docPath = `logs/${this.user.uid}`;
+    var docPath = `users/${this.user.uid}`;
     var logId: string = log.id;
     var userLogArray: string[] = [];
 
