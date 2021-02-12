@@ -26,6 +26,7 @@ export class SidebarComponent {
   logRef: AngularFirestoreCollection<Log>;
   logs: Observable<Log[]>;
   showSpinner: boolean = true;
+  selectedLog: string= "test1"; // Grab this value from splash screen when user first logs in and selects a log
   
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -48,6 +49,10 @@ export class SidebarComponent {
    */
   openDialog() {
     const dialogRef = this.dialog.open(CreateLogComponent);
+  }
+
+  onLogSelectionChange(selected) {
+    this.selectedLog = selected._value;
   }
 
   ngOnInit() {
