@@ -43,8 +43,8 @@
   width: min-content;
 }
 
-.sidenav-spacer {
-  flex: 1 1 auto;
+#your-logs {
+  font-size: larger;
 }
 
 
