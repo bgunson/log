@@ -6,7 +6,6 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
 import { User } from './models/user.model';
-import { Log } from './models/log.model';
 
 
 @Component({
@@ -17,41 +16,22 @@ import { Log } from './models/log.model';
 export class AppComponent implements OnInit {
 
   showLogin: boolean = true;
-  showSelector: boolean;
-  user: User;
-  showSpinner: boolean = true;
-  selectedLog: string;
 
   title = 'log';
 
   providers = AuthProvider;
 
-  constructor(public authService: AuthService, public store: AngularFirestore) {
-    this.selectedLog = localStorage.getItem('selectedLog');
+  constructor(public authService: AuthService) {
+
   }
 
   toggleView() {
     this.showLogin = !this.showLogin;
   }
 
-  userSignedOut() {
-    this.showSelector = true;
-    localStorage.clear();
-  }
-
-  userSelected(event) {
-    this.selectedLog = event;
-    this.showSelector = false;
-  }
-
 
   ngOnInit() {
-    this.selectedLog = localStorage.getItem('selectedLog');
-    if (this.selectedLog) {
-      this.showSelector = false;
-    } else {
-      this.showSelector = true;
-    }
+
   }
 
 }

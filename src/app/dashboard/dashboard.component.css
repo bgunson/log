@@ -1,3 +1,18 @@
+.text-logo {
+  font-size:xx-large;
+  font-family:monospace;
+}
+
+
+.toolbar-spacer {
+flex: 1 1 auto;
+}
+
+.toolbar {
+position: fixed;
+z-index: 10;
+}
+
 .grid-container {
   margin-top: 60px;
 }

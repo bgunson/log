@@ -2,24 +2,8 @@
     font-size:xx-large;
     font-family:monospace;
   }
-
-
-.toolbar-spacer {
-  flex: 1 1 auto;
-}
-
+  
 .toolbar {
   position: fixed;
   z-index: 10;
-}
-
-#initial-log-select {
-  padding-top: 25px;
-  padding-left: 15%;
-  padding-right: 15%;
-}
-
-.main-div {
-  background-color: #00796b;
-  height: 100vh;
 }

@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Log } from '../models/log.model';
@@ -15,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   showSpinner: boolean = true;
   logRef: AngularFirestoreCollection<Log>;
