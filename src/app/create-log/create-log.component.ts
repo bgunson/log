@@ -13,8 +13,6 @@ import { DbService } from '../services/db.service';
 })
 export class CreateLogComponent {
 
-  user: any;
-
   numFields = 0;
 
   fieldsAdded = [true, false, false, false, false]
@@ -59,13 +57,8 @@ export class CreateLogComponent {
   constructor(
     private fb: FormBuilder, 
     private dbService: DbService, 
-    private authService: AuthService,
     public dialogRef: MatDialogRef<CreateLogComponent>
-    ) {
-
-    this.user = authService.user;
-    
-  }
+    ) { }
 
   
 
@@ -87,7 +80,7 @@ export class CreateLogComponent {
     this.logForm.get("field_" + index).reset();
   }
 
-
+  // not in use; possibly in future for reactive validators for fields
   selection(event) {
     console.log(event);
   }
@@ -98,9 +91,7 @@ export class CreateLogComponent {
     const logId: string = this.logForm.get('identifier').value;
 
     // Make sure we are only added non-empty fields/values to logData object
-
     let attributeObject = {};
-
 
     for (var i = 0; i < this.fieldsAdded.length; i++) {
       let f: string = this.logForm.get('field_' + i).value
