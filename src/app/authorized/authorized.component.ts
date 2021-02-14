@@ -23,6 +23,7 @@ export class AuthorizedComponent implements OnInit {
   logList: Log[];
 
   constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) { 
+    this.selectedLog = localStorage.getItem('selectedLog');
     this.user = this.authService.user;
   }
 
@@ -30,6 +31,9 @@ export class AuthorizedComponent implements OnInit {
    * When a user wishes to add a new log, open the create-log component in a dialog popup
    */
   openDialog() {
+
+    // TODO: when user clicks off dialog wihtoout inputting anything make sure we stay at dashboard
+
     const dialogRef = this.dialog.open(CreateLogComponent, {
       data: this.logList
     });
@@ -59,14 +63,12 @@ export class AuthorizedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedLog = localStorage.getItem('selectedLog');
     if (this.selectedLog) {
       this.showDashboard = false;
     } else {
       this.showDashboard = true;
     }
 
-    this.selectedLog = localStorage.getItem('selectedLog');
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();
     this.logs.subscribe(res => {
