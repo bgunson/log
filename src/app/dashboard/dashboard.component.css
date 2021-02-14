@@ -1,5 +1,10 @@
 .grid-container {
-  
+  margin-top: 60px;
+}
+
+.mat-h1 {
+  margin-left: 60px;
+  color: white;
 }
 
 .dashboard-card {
@@ -11,7 +16,7 @@
   border-radius: 10px;
 }
 .dashboard-card:hover {
-  -webkit-filter: grayscale(100%) black(100%);
+  filter:black(100%);
   opacity: 0.5;
 }
 

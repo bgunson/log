@@ -11,7 +11,7 @@
         
         <mat-list-item><span id="your-logs">Logs</span>
           <span class="toolbar-spacer"></span>
-          <button mat-icon-button color="accent" aria-label="" (click)="openDialog()">
+          <button mat-icon-button color="primary" aria-label="" (click)="openDialog()">
             <i class="material-icons">add_circle_outline</i>
           </button>
         </mat-list-item>
@@ -51,13 +51,10 @@
 
   <mat-sidenav-content class="sidenav-content">
 
-    <!-- initial log selection screen -->
-    <div class="container" id="initial-log-select" *ngIf="!selectedLog">
-      <mat-spinner *ngIf="showSpinner" style="margin:50%; margin-top: 15%;"></mat-spinner>
-      <!-- <app-dashboard [logList]="logs" *ngIf="!showSpinner && !selectedLog"></app-dashboard> -->
+    <!-- Main content area -->
+    <div class="log-table-div">
+      <app-log-table></app-log-table>
     </div>
-
-    <!-- Upon selection or creation, display log below -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,8 +1,8 @@
-import { Component, ɵConsole } from '@angular/core';
+import { Component, Inject, ɵConsole } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 
@@ -13,10 +13,8 @@ import { DbService } from '../services/db.service';
 })
 export class CreateLogComponent {
 
-  user: any;
-
   numFields = 0;
-
+  duplicateLog: boolean = false;
   fieldsAdded = [true, false, false, false, false]
 
   // TODO: add form control to default checkbox
@@ -59,13 +57,9 @@ export class CreateLogComponent {
   constructor(
     private fb: FormBuilder, 
     private dbService: DbService, 
-    private authService: AuthService,
-    public dialogRef: MatDialogRef<CreateLogComponent>
-    ) {
-
-    this.user = authService.user;
-    
-  }
+    public dialogRef: MatDialogRef<CreateLogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) { }
 
   
 
@@ -87,9 +81,18 @@ export class CreateLogComponent {
     this.logForm.get("field_" + index).reset();
   }
 
-
+  // not in use; possibly in future for reactive validators for fields
   selection(event) {
     console.log(event);
+  }
+
+  logExists(id: string) : boolean {
+    for (let item of this.data) {
+      if (item.id.toLowerCase() == id.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 
 
@@ -98,9 +101,7 @@ export class CreateLogComponent {
     const logId: string = this.logForm.get('identifier').value;
 
     // Make sure we are only added non-empty fields/values to logData object
-
     let attributeObject = {};
-
 
     for (var i = 0; i < this.fieldsAdded.length; i++) {
       let f: string = this.logForm.get('field_' + i).value
@@ -114,9 +115,14 @@ export class CreateLogComponent {
       attributes: attributeObject
     }
 
-    this.dbService.addLog(logObject);
+    if (this.logExists(logId)) {
+      // make validator for duplicate log
+      alert("There is already a log with this ID...")
+    } else {
+      localStorage.setItem('selectedLog', logId);
+      this.dbService.addLog(logObject);
 
-    this.dialogRef.close();
-
+      this.dialogRef.close();
+    }
   }
 }
