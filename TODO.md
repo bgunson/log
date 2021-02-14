@@ -18,7 +18,4 @@
 ### Log Deletion 
 - [ ] When user deletes log, removed from database, sidebar updates upon deletion
 - [ ] When user deletes account, all logs are removed from database
-- [ ] Warning messages when user deletes logs
-
-### Bugs
-- Signing in/out repeatedly, sometimes selection screen pops up first but sometimes goes right to sidebar component even if no log is selected.
+- [ ] Warning messages when user deletes logs 

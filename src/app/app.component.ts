@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   userSignedOut() {
+    this.showSelector = true;
     localStorage.clear();
   }
 
