@@ -1,8 +1,8 @@
-import { Component, ɵConsole } from '@angular/core';
+import { Component, Inject, ɵConsole } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 
@@ -57,7 +57,8 @@ export class CreateLogComponent {
   constructor(
     private fb: FormBuilder, 
     private dbService: DbService, 
-    public dialogRef: MatDialogRef<CreateLogComponent>
+    public dialogRef: MatDialogRef<CreateLogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
   
@@ -85,6 +86,15 @@ export class CreateLogComponent {
     console.log(event);
   }
 
+  logExists(id: string) : boolean {
+    for (let item of this.data) {
+      if (item.id.toLowerCase() == id.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
   onSubmit() {
     
@@ -105,10 +115,14 @@ export class CreateLogComponent {
       attributes: attributeObject
     }
 
-    localStorage.setItem('selectedLog', logId);
-    this.dbService.addLog(logObject);
+    if (this.logExists(logId)) {
+      // make validator for duplicate log
+      console.log("Duplicate Log...")
+    } else {
+      localStorage.setItem('selectedLog', logId);
+      this.dbService.addLog(logObject);
 
-    this.dialogRef.close();
-
+      this.dialogRef.close();
+    }
   }
 }
