@@ -1,0 +1,40 @@
+.text-logo {
+    font-size:xx-large;
+    font-family:monospace;
+  }
+
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  position: fixed;
+  z-index: 10;
+}
+
+#initial-log-select {
+  padding-top: 25px;
+  padding-left: 15%;
+  padding-right: 15%;
+  background-color: #00796b;
+  height: 100vh;
+}
+
+.main-div {
+  background-color: white;
+  padding: 50px;
+  padding-top: 60px;
+}
+
+.log-selector-div {
+  padding-top: 10px;
+  padding-right: 20px;
+  font-size: smaller;
+}
+
+#your-logs {
+  color: grey;
+  font-size: smaller;
+  padding-left: 15px;
+}
