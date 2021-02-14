@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { CreateLogComponent } from '../create-log/create-log.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,17 +25,23 @@ export class DashboardComponent {
   @Output() hasSelected = new EventEmitter<string>();
   
 
-  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private store: AngularFirestore) {
+  constructor(private breakpointObserver: BreakpointObserver, 
+    public dialog: MatDialog,
+    private authService: AuthService, private store: AngularFirestore) {
     this.user = authService.user;
   }
 
   onLogSelection(selection) {
     if (selection == 'new') {
-      // open new log dialog
+      // open new log dialog, emit new creation, goto main screen
+      const dialogRef = this.dialog.open(CreateLogComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        this.hasSelected.emit(localStorage.getItem('selectedLog'))
+      })
     } else {
       localStorage.setItem('selectedLog', selection);
+      this.hasSelected.emit(selection);
     }
-    this.hasSelected.emit(selection);
   }
 
   ngOnInit() {

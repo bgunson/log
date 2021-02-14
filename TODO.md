@@ -15,6 +15,7 @@
 - [ ] When user selects new from initial dashboard, user is greeted with the create-log component
 - [ ] User can add data section (table, todo, scratch) for selected log
 - [ ] User can read, write to data selection for given log
+- [ ] Appropriate error prompt when user tries to create a log that already exists
 
 ### Log Deletion 
 - [ ] When user deletes log, removed from database, sidebar updates upon deletion

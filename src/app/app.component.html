@@ -13,7 +13,7 @@
       <app-dashboard *ngIf="showSelector; else main" (hasSelected)="userSelected($event)"></app-dashboard>
     </div>
     
-    <app-sidebar [selectedLog]="!showSelector" *ngIf="!showSelector"></app-sidebar>
+    <app-sidebar [selectedLog]="selectedLog" *ngIf="!showSelector"></app-sidebar>
   
     
 </div>

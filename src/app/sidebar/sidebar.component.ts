@@ -27,7 +27,7 @@ export class SidebarComponent {
   user: User;
   logRef: AngularFirestoreCollection<Log>;
   logs: Observable<Log[]>;
-  showSpinner: boolean = false;
+  showSpinner: boolean = true;
   selectedLog: string; 
   
   
@@ -52,9 +52,12 @@ export class SidebarComponent {
    */
   openDialog() {
     const dialogRef = this.dialog.open(CreateLogComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.selectedLog = localStorage.getItem('selectedLog');
+    })
   }
 
-  // Fix this: not call _value
+  
   onLogSelectionChange(selected) {
     this.selectedLog = selected.id;
     localStorage.setItem('selectedLog', selected.id);

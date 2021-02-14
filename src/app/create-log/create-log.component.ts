@@ -105,6 +105,7 @@ export class CreateLogComponent {
       attributes: attributeObject
     }
 
+    localStorage.setItem('selectedLog', logId);
     this.dbService.addLog(logObject);
 
     this.dialogRef.close();
