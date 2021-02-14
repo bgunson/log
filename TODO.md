@@ -16,3 +16,7 @@
 - [ ] When user deletes log, removed from database, sidebar updates upon deletion
 - [ ] When user deletes account, all logs are removed from database
 - [ ] Warning messages when user deletes logs 
+
+### Log Data
+- [ ] Log table component
+- [ ] Log card component - edit/delete log from menu button
