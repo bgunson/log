@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { AuthService } from '../services/auth.service';
 import { Log } from '../models/log.model';
+import { User } from '../models/user.model';
 
 
 @Component({
@@ -21,11 +22,14 @@ export class SidebarComponent {
   // - load user default log to main content area
   //    -> if no sublogs (table, todo, etc) then show a widget style display
   //       giving the user choice of sublog they can create
+  // - On page referesh, dont want to go back to selector
 
-  user: any;
+  user: User;
   logRef: AngularFirestoreCollection<Log>;
   logs: Observable<Log[]>;
-  showSpinner: boolean = true;
+  showSpinner: boolean = false;
+  selectedLog: string; 
+  
   
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -50,7 +54,14 @@ export class SidebarComponent {
     const dialogRef = this.dialog.open(CreateLogComponent);
   }
 
+  // Fix this: not call _value
+  onLogSelectionChange(selected) {
+    this.selectedLog = selected.id;
+    localStorage.setItem('selectedLog', selected.id);
+  }
+
   ngOnInit() {
+    this.selectedLog = localStorage.getItem('selectedLog');
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();
     this.logs.subscribe(() => this.showSpinner = false);

@@ -1,22 +1,26 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+<mat-spinner *ngIf="showSpinner" style="margin:50%; margin-top: 15%;"></mat-spinner>
+<div class="grid-container" *ngIf="!showSpinner">
+  <h1 class="mat-h1">Your Logs</h1>
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile (click)="onLogSelection('new')" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content class="dashboard-card-content" style="padding-top: 20px; text-align: center; padding-left: 0;">
+          <mat-icon color="primary" style="font-size: 50px; padding-right: 25px;">add</mat-icon>
+          <p style="font-weight: 500;">Add Log</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of cards" (click)="onLogSelection(card.title)" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
+            {{ card.title }}
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div></div>
+          <div *ngFor="let item of card.attr | keyvalue">
+              <small>{{item.key}}: {{item.value}}</small>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

@@ -1,23 +1,6 @@
-<mat-toolbar color="primary">
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <img src="../assets/wood.png" id="log-logo">
-  <span class="text-logo">log</span>
-
-  <span class="toolbar-spacer"></span>
-
-  <ngx-auth-firebaseui-avatar></ngx-auth-firebaseui-avatar>
-
-</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" 
+  <mat-sidenav #drawer class="sidenav"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
@@ -33,34 +16,32 @@
           </button>
         </mat-list-item>
         
-        <mat-list-item *ngIf="showSpinner"><mat-spinner [diameter]="30"></mat-spinner> </mat-list-item>
-               
-        <!-- <mat-list-item *ngIf="logList == 0" ><small>You do not have any logs.</small></mat-list-item> -->
-
-        <mat-accordion *ngFor="let log of logs | async">
-          <mat-expansion-panel (opened)="panelOpenState = true"
+        <mat-list-item style="padding-left: 35%;" *ngIf="showSpinner"><mat-spinner [diameter]="30"></mat-spinner> </mat-list-item>
+                
+        <mat-accordion *ngIf="!showSpinner">
+          <mat-expansion-panel (open)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{ log.id }}
+                {{ selectedLog }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div *ngFor="let item of log.attributes | keyvalue">
+
+            <mat-divider></mat-divider>
+
+            <mat-selection-list #logSelector [multiple]="false">
+              <mat-list-option 
+                *ngFor="let log of logs | async" [value]="log.id"
+                (click)="onLogSelectionChange(log)"
+                [selected]="selectedLog == log.id">
+                {{ log.id }}
+              </mat-list-option>
+            </mat-selection-list>
+            <!-- <div *ngFor="let item of log.attributes | keyvalue">
               <small>{{item.key}}: {{item.value}}</small>
-            </div>
-            <button mat-stroked-button color="primary">Select</button>
-            <button mat-stroked-button color="warn">Delete</button>
+            </div> -->
           </mat-expansion-panel>
         </mat-accordion>
-
-        <!-- <mat-selection-list #showLogs [multiple]="false">
-          <mat-list-option *ngFor="let log of logList" [value]="log">
-            {{ log }}
-            <span class="toolbar-spacer"></span>
-            <i class="material-icons">expand_more</i>
-          </mat-list-option>
-        </mat-selection-list> -->
-
 
         <mat-divider></mat-divider>
     
@@ -70,12 +51,13 @@
 
   <mat-sidenav-content class="sidenav-content">
 
-    <!-- Add Content Here -->
-
-    <!-- Main Content -->
-    <div class="log-table-div">
-      <app-dashboard></app-dashboard>
+    <!-- initial log selection screen -->
+    <div class="container" id="initial-log-select" *ngIf="!selectedLog">
+      <mat-spinner *ngIf="showSpinner" style="margin:50%; margin-top: 15%;"></mat-spinner>
+      <!-- <app-dashboard [logList]="logs" *ngIf="!showSpinner && !selectedLog"></app-dashboard> -->
     </div>
+
+    <!-- Upon selection or creation, display log below -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

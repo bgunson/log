@@ -18,4 +18,4 @@
 ### Log Deletion 
 - [ ] When user deletes log, removed from database, sidebar updates upon deletion
 - [ ] When user deletes account, all logs are removed from database
-- [ ] Warning messages when user deletes logs
+- [ ] Warning messages when user deletes logs 

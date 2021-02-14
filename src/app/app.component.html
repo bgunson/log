@@ -1,19 +1,26 @@
+<mat-toolbar class="toolbar" color="primary">
 
+  <img src="../assets/wood.png" id="log-logo">
+  <span class="text-logo">log</span>
+  <span class="toolbar-spacer"></span>
+  <ngx-auth-firebaseui-avatar (onSignOut)="userSignedOut()"></ngx-auth-firebaseui-avatar>
+  
+</mat-toolbar>
 
 <div *ngIf="authService.auth.user | async as user; else login" class="log-table-div">
+    <!-- initial log selection screen -->
+    <div id="initial-log-select">
+      <app-dashboard *ngIf="showSelector; else main" (hasSelected)="userSelected($event)"></app-dashboard>
+    </div>
+    
+    <app-sidebar [selectedLog]="!showSelector" *ngIf="!showSelector"></app-sidebar>
+   
 
-    <app-sidebar></app-sidebar>
+    
     
 </div>
 <ng-template #login>
 
-  <mat-toolbar color="primary">
-
-    <img src="../assets/wood.png" id="log-logo">
-    <span class="text-logo">log</span>
-    
-  </mat-toolbar>
-  
   <ngx-auth-firebaseui-login
       [hidden]="!showLogin"
       [providers]="['google']"
