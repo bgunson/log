@@ -14,7 +14,7 @@ import { DbService } from '../services/db.service';
 export class CreateLogComponent {
 
   numFields = 0;
-
+  duplicateLog: boolean = false;
   fieldsAdded = [true, false, false, false, false]
 
   // TODO: add form control to default checkbox
@@ -117,7 +117,7 @@ export class CreateLogComponent {
 
     if (this.logExists(logId)) {
       // make validator for duplicate log
-      console.log("Duplicate Log...")
+      alert("There is already a log with this ID...")
     } else {
       localStorage.setItem('selectedLog', logId);
       this.dbService.addLog(logObject);

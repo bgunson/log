@@ -20,6 +20,7 @@ export class DashboardComponent {
   showSpinner: boolean = true;
   logRef: AngularFirestoreCollection<Log>;
   logs: Observable<Log[]>;
+  logList: Log[];
   cards: any[] = [];
   user: User;
   @Output() hasSelected = new EventEmitter<string>();
@@ -34,7 +35,9 @@ export class DashboardComponent {
   onLogSelection(selection) {
     if (selection == 'new') {
       // open new log dialog, emit new creation, goto main screen
-      const dialogRef = this.dialog.open(CreateLogComponent);
+      const dialogRef = this.dialog.open(CreateLogComponent, {
+        data: this.logList
+      });
       dialogRef.afterClosed().subscribe(() => {
         this.hasSelected.emit(localStorage.getItem('selectedLog'))
       })
@@ -48,6 +51,7 @@ export class DashboardComponent {
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();
     this.logs.subscribe((res) => {
+      this.logList = res;
       this.showSpinner = false;
       res.forEach(element => {
         this.cards.push({title: element.id, attr: element.attributes, cols: 1, rows: 1})
