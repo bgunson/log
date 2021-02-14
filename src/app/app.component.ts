@@ -52,8 +52,6 @@ export class AppComponent implements OnInit {
     } else {
       this.showSelector = true;
     }
-    console.log(this.selectedLog);
-    console.log(this.showSelector);
   }
 
 }
