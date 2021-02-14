@@ -13,11 +13,11 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
+/* .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 10;
-}
+} */
 
 
 .text-logo {
@@ -46,8 +46,9 @@
   font-size: larger;
 }
 
-/* mat-panel-title {
-  font-family: monospace;
-} */
-
+#initial-log-select {
+  padding-top: 25px;
+  padding-left: 15%;
+  padding-right: 15%;
+}
 

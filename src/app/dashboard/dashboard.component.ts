@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Log } from '../models/log.model';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,27 +14,36 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  /** Based on the screen size, switch from standard to one column per row */
+
+  showSpinner: boolean = true;
+  logRef: AngularFirestoreCollection<Log>;
+  logs: Observable<Log[]>;
+  cards: any[] = [];
+  user: User;
+  @Output() hasSelected = new EventEmitter<string>();
   
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 2, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private store: AngularFirestore) {
+    this.user = authService.user;
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  onLogSelection(selection) {
+    if (selection == 'new') {
+      // open new log dialog
+    } else {
+      localStorage.setItem('selectedLog', selection);
+    }
+    this.hasSelected.emit(selection);
+  }
+
+  ngOnInit() {
+    this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
+    this.logs = this.logRef.valueChanges();
+    this.logs.subscribe((res) => {
+      this.showSpinner = false;
+      res.forEach(element => {
+        this.cards.push({title: element.id, attr: element.attributes, cols: 1, rows: 1})
+      }); 
+    });
+  }
 }

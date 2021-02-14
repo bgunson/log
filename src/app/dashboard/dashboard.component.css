@@ -1,21 +1,22 @@
 .grid-container {
-  margin: 20px;
+  
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 15px;
+  cursor: pointer;
+  width: 75%;
+  height: 70%;
   left: 15px;
   right: 15px;
-  bottom: 15px;
+  border-radius: 10px;
+}
+.dashboard-card:hover {
+  -webkit-filter: grayscale(100%) black(100%);
+  opacity: 0.5;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
+
 
 .dashboard-card-content {
-  text-align: center;
+  padding-left: 15px;
 }
