@@ -18,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { LogTableComponent } from './log-table/log-table.component';
+import { LogTableComponent } from './log-data/log-table/log-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -33,6 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthorizedComponent } from './authorized/authorized.component';
+import { LogCardComponent } from './log-data/log-card/log-card.component';
 
 
 
@@ -43,7 +44,8 @@ import { AuthorizedComponent } from './authorized/authorized.component';
     DashboardComponent,
     LogTableComponent,
     CreateLogComponent,
-    AuthorizedComponent
+    AuthorizedComponent,
+    LogCardComponent
   ],
   imports: [
     BrowserModule,
