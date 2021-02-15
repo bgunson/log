@@ -31,3 +31,8 @@
   right: 15px;
   border-radius: 10px;
 }
+
+.dashboard-card:hover {
+  filter:black(100%);
+  opacity: 0.5;
+}

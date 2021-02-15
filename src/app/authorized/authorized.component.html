@@ -8,7 +8,7 @@
   <div class="log-selector-div" *ngIf="!showDashboard">
     <mat-form-field style="text-align: right;" appearance="none">
       <!-- <mat-label>{{ selectedLog }}</mat-label> -->
-      <mat-select class="log-select" [(value)]="selectedLog">
+      <mat-select class="log-select" style="font-family: monospace;" [(value)]="selectedLog">
        <mat-option (click)="toDashboard()">
          All Logs
        </mat-option>
