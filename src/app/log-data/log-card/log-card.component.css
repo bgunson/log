@@ -1,0 +1,17 @@
+.log-card {
+    cursor: pointer;
+    width: 250px;
+    height: 125px;
+    left: 15px;
+    right: 15px;
+    border-radius: 10px;
+  }
+
+  .log-card:hover {
+    filter:black(100%);
+    opacity: 0.5;
+  }
+  
+  .log-card-content {
+    padding-left: 15px;
+  }
