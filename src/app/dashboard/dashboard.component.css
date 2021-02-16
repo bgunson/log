@@ -5,38 +5,34 @@
 
 
 .toolbar-spacer {
-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .toolbar {
-position: fixed;
-z-index: 10;
+  position: fixed;
+  z-index: 10;
 }
 
 .grid-container {
-  margin-top: 60px;
+  padding-top: 5%;
+  align-content: center;
 }
 
 .mat-h1 {
-  margin-left: 60px;
+  margin-left: 7%;
   color: white;
 }
 
 .dashboard-card {
   cursor: pointer;
-  width: 75%;
-  height: 70%;
+  width: 250px;
+  height: 125px;
   left: 15px;
   right: 15px;
   border-radius: 10px;
 }
+
 .dashboard-card:hover {
   filter:black(100%);
   opacity: 0.5;
-}
-
-
-
-.dashboard-card-content {
-  padding-left: 15px;
 }

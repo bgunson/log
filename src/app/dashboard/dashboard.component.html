@@ -1,8 +1,9 @@
 <mat-spinner *ngIf="showSpinner" color="accent" style="margin:45%; margin-top: 15%;"></mat-spinner>
 <div class="grid-container" *ngIf="!showSpinner">
   <h1 class="mat-h1">Your Logs</h1>
-  <mat-grid-list cols="3" rowHeight="200px">
+  <mat-grid-list cols="3" rowHeight="2:1">
     <mat-grid-tile (click)="onLogSelection('new')" [colspan]="1" [rowspan]="1">
+      <!-- New Log Card-->
       <mat-card class="dashboard-card">
         <mat-card-content class="dashboard-card-content" style="padding-top: 20px; text-align: center; padding-left: 0;">
           <mat-icon color="primary" style="font-size: 50px; padding-right: 25px;">add</mat-icon>
@@ -10,19 +11,8 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile *ngFor="let card of cards" (click)="onLogSelection(card.title)" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{ card.title }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div *ngFor="let item of card.attr | keyvalue">
-              <small>{{item.key}}: {{item.value}}</small>
-          </div>
-        </mat-card-content>
-      </mat-card>
+    <mat-grid-tile *ngFor="let log of logList" (click)="onLogSelection(log.id)" [colspan]="1" [rowspan]="1">
+      <app-log-card [log]="log"></app-log-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
