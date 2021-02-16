@@ -6,10 +6,4 @@ Log is a simple record keeping application I am building with the intention of t
 
 ______
 
-### Progress Update for Feb 5, 2021 
-
-So far, I have implemented my auth service (thanks to the amazing ui [ngx-auth-firebaseui](https://github.com/AnthonyNahas/ngx-auth-firebaseui) by Anthony Nahas) and now I am going onward to the database services. As it stands the app is set up with a Firebase I created and any new user that registers can create a log and see a selection on the sidebar of their currrent logs. 
-
-![update](https://github.com/bgunson/log/blob/main/src/assets/screenshot_feb52021.PNG)
-
-Further on the agenda is to make clean up the sidebar interface, and working on the main content area where the log data will be displayed and manipulated.
+Please see [my website](https://bgunson.github.io/) for progress updates.
