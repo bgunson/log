@@ -1,10 +1,9 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from '../models/log.model';
-import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -16,10 +15,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DashboardComponent implements OnInit {
 
-  showSpinner: boolean = true;
-  logRef: AngularFirestoreCollection<Log>;
-  logs: Observable<Log[]>;
-  logList: Log[];
+  @Input() logList: Log[];
+  @Input() showSpinner: boolean;
   user: User;
   colSpan: number; 
   rowSpan: number; 
@@ -28,9 +25,8 @@ export class DashboardComponent implements OnInit {
   
 
   constructor(private breakpointObserver: BreakpointObserver, 
-    public dialog: MatDialog,
-    private authService: AuthService, private store: AngularFirestore) {
-    this.user = authService.user;
+    public dialog: MatDialog) {
+    //this.user = authService.user;
 
     this.breakpointObserver.observe(Breakpoints.Handset).subscribe(res => {
         if (res.matches) {
@@ -63,11 +59,5 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
-    this.logs = this.logRef.valueChanges();
-    this.logs.subscribe((res) => {
-      this.logList = res;
-      this.showSpinner = false;
-    });
   }
 }
