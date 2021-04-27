@@ -2,8 +2,6 @@ import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
-import { AuthService } from '../services/auth.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 
