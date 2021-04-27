@@ -9,7 +9,10 @@
 
   <div style="text-align: center;">
     <div class="login-icon">
-      <img src="../assets/wood_lg.png" id="log-logo" height="50%">
+      <picture>
+        <source media="(max-width: 799px)" srcset="../assets/wood.png">
+        <img src="../assets/wood_lg.png" alt="lg">
+      </picture>
     </div>
     <ngx-auth-firebaseui-login
       [hidden]="!showLogin"
