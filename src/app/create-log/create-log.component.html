@@ -1,5 +1,5 @@
 <form [formGroup]="logForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Create a New Log</mat-card-title>
     </mat-card-header>
@@ -29,6 +29,7 @@
            
           </mat-form-field>
         </div>
+        
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Value" formControlName="value_0">

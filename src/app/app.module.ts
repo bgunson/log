@@ -45,7 +45,7 @@ import { LogCardComponent } from './log-data/log-card/log-card.component';
     LogTableComponent,
     CreateLogComponent,
     AuthorizedComponent,
-    LogCardComponent
+    LogCardComponent,
   ],
   imports: [
     BrowserModule,

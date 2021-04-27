@@ -2,8 +2,7 @@
     font-size:xx-large;
     font-family:monospace;
   }
-  
-.toolbar {
-  position: fixed;
-  z-index: 10;
+
+.login-icon {
+  background-color: #00796b;
 }

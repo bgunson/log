@@ -7,38 +7,39 @@
 
   <div class="log-selector-div" *ngIf="!showDashboard">
     <mat-form-field style="text-align: right;" appearance="none">
-      <!-- <mat-label>{{ selectedLog }}</mat-label> -->
       <mat-select class="log-select" style="font-family: monospace;" [(value)]="selectedLog">
-       <mat-option (click)="toDashboard()">
-         All Logs
-       </mat-option>
-       <mat-option (click)="openDialog()">
-         New Log
-       </mat-option>
-       <hr>
-       <label id="your-logs">Your Logs</label>
+        <mat-option (click)="toDashboard()">
+          All Logs
+        </mat-option>
+        <mat-option (click)="openDialog()">
+          New Log
+        </mat-option>
+        <hr>
+        <label id="your-logs">Your Logs</label>
 
-       <mat-option *ngFor="let log of logs | async" [value]="log.id" (click)="onLogSelectionChange(log)"
-       [selected]="selectedLog == log.id">
+        <mat-option *ngFor="let log of logs | async" [value]="log.id" (click)="onLogSelectionChange(log)"
+          [selected]="selectedLog == log.id">
           {{ log.id }}
-       </mat-option>
-     </mat-select>
-   </mat-form-field>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <ngx-auth-firebaseui-avatar (onSignOut)="userSignedOut()"></ngx-auth-firebaseui-avatar>
   
-</mat-toolbar> 
+</mat-toolbar>
 
-<div *ngIf="showDashboard; else main">
-    <div id="initial-log-select">
-        <app-dashboard (hasSelected)="userSelected($event)"></app-dashboard>
-    </div>
+<div style="overflow-y: auto;" *ngIf="showDashboard; else main">
+  <div id="initial-log-select">
+      <app-dashboard (hasSelected)="userSelected($event)"></app-dashboard>
+  </div>
 </div>
 
 <ng-template #main>
     <div class="main-div">
-        <h1 style="color: white;">{{ selectedLog }}</h1>
+        <h1 class="mat-h1">{{ selectedLog }}</h1>
         <app-log-table></app-log-table>
     </div>
 </ng-template>
+
+

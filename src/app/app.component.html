@@ -7,14 +7,11 @@
 </div>
 <ng-template #login>
 
-  <mat-toolbar class="toolbar" color="primary">
-
-    <img src="../assets/wood.png" id="log-logo">
-    <span class="text-logo">log</span>
-    
-  </mat-toolbar>
-
-  <ngx-auth-firebaseui-login
+  <div style="text-align: center; padding-bottom: 10px;">
+    <div class="login-icon">
+      <img src="../assets/wood_lg.png" id="log-logo" height="50%">
+    </div>
+    <ngx-auth-firebaseui-login
       [hidden]="!showLogin"
       [providers]="['google']"
       [guestEnabled]="false"
@@ -27,6 +24,7 @@
       [guestEnabled]="false"
       (onLoginRequested)="toggleView()">
   </ngx-auth-firebaseui-register>
+  </div>
   
 </ng-template>  
 
