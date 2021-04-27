@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import {AuthProvider} from 'ngx-auth-firebaseui';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { AuthProvider } from 'ngx-auth-firebaseui';
 import { AuthService } from './services/auth.service';
-import { User } from './models/user.model';
 
 
 @Component({

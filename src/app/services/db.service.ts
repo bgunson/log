@@ -12,7 +12,7 @@ export class DbService {
   user: User;
 
   constructor(private store: AngularFirestore, private authService: AuthService) {
-    this.user = authService.user;
+    this.user = authService.user; 
   }
 
   addLog(log: Log) {

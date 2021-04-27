@@ -25,6 +25,9 @@ export class AuthorizedComponent implements OnInit {
   constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) { 
     this.selectedLog = localStorage.getItem('selectedLog');
     this.user = this.authService.user;
+
+    console.log("email verified: " + this.user.isEmailVerified);
+
   }
 
   /**

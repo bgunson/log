@@ -4,5 +4,6 @@ export interface User {
     photoURL?: string;
     displayName: string;  
     phoneNumber?: string;
-    providerId?: string
+    providerId?: string;
+    isEmailVerified?: boolean
   }
