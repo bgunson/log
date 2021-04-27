@@ -12,16 +12,9 @@ export class DbService {
   user: User;
 
   constructor(private store: AngularFirestore, private authService: AuthService) {
-    this.user = authService.user;
+    this.user = authService.user; 
   }
 
-  logExists(logId: string) : boolean {
-    return false;
-    
-  }
-
-  // TODO: 
-  // - Check for existing collection(id) and warn user if one exists
   addLog(log: Log) {
 
     var logId: string = log.id;

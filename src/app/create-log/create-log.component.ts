@@ -1,9 +1,6 @@
-import { Component, Inject, ɵConsole } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 
 @Component({
@@ -82,7 +79,7 @@ export class CreateLogComponent {
   }
 
   // not in use; possibly in future for reactive validators for fields
-  selection(event) {
+  selection(event: string) {
     console.log(event);
   }
 

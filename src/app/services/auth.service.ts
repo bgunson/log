@@ -12,9 +12,13 @@ export class AuthService {
 
   constructor(public auth: AngularFireAuth) { 
     //console.log("new auth service");
-    auth.onAuthStateChanged(res =>{
+    auth.onAuthStateChanged(res => {
       this.user = res;
+      if (res.emailVerified) {
+        this.user.isEmailVerified = true;
+      } else {
+        this.user.isEmailVerified = false;
+      }
     })
-
   }
 }
