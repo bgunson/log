@@ -6,7 +6,7 @@
     </mat-card-header>
     <mat-card-content class="log-card-content">
         <div *ngFor="let item of log.attributes | keyvalue">
-            <small>{{item.key}}: {{item.value}}</small>
+            {{item.key}}: {{item.value}}
         </div>
     </mat-card-content>
 </mat-card>

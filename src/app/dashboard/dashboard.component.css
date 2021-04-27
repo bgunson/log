@@ -14,9 +14,11 @@
 }
 
 .grid-container {
-  padding-top: 5%;
+  
   align-content: center;
 }
+
+
 
 .mat-h1 {
   margin-left: 2%;
@@ -30,7 +32,7 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .dashboard-card:hover {

@@ -43,7 +43,7 @@ export class AuthorizedComponent implements OnInit {
   }
 
   toDashboard() {
-    localStorage.clear()
+    localStorage.clear();
     this.showDashboard = true;
   }
 

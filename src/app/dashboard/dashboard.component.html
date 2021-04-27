@@ -1,13 +1,12 @@
-<mat-spinner *ngIf="showSpinner" color="accent" style="margin:45%; margin-top: 15%;"></mat-spinner>
+<mat-spinner *ngIf="showSpinner" color="accent" style="left: 50%; margin-left: -3em; margin-top: 15%;"></mat-spinner>
 <div class="grid-container" *ngIf="!showSpinner">
   <h1 class="mat-h1">Your Logs</h1>
-  <mat-grid-list cols="3" rowHeight="4:1">
+  <mat-grid-list cols="3" rowHeight="3:1">
     <mat-grid-tile (click)="onLogSelection('new')" [colspan]="this.colSpan" [rowspan]="this.rowSpanNew">
-      <!-- New Log Card-->
       <mat-card class="dashboard-card">
         <mat-card-content class="dashboard-card-content" style="padding-top: 1vw; text-align: center; padding-left: 0;">
           <div><mat-icon color="primary" style="font-size: 50px; padding-right: 25px;">add</mat-icon></div>
-          <p style="font-weight: 500;" [hidden]="this.rowSpanNew == 4">Add Log</p>
+          <p class="add-log-txt" style="display: none; font-weight: 500;">Add Log</p>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

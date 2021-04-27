@@ -4,6 +4,7 @@
 - [x] Upon load (no log selected) user see main page with all logs in separate widgets, like firebase console displays your projects. Can select existing log or add new one from main section.
 - [ ] When user deletes account, make sure account and credentials are removed from firebase auth and firestore
 - [ ] Warning message for user when account is deleted
+- [ ] Add proper routing
 
 
 ### Log Creation

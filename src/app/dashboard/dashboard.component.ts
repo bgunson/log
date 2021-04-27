@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   logRef: AngularFirestoreCollection<Log>;
   logs: Observable<Log[]>;
   logList: Log[];
-  cards: any[] = [];
   user: User;
   colSpan: number; 
   rowSpan: number; 
@@ -36,8 +35,8 @@ export class DashboardComponent implements OnInit {
     this.breakpointObserver.observe(Breakpoints.Handset).subscribe(res => {
         if (res.matches) {
           this.colSpan = 3;
-          this.rowSpan = 7;
-          this.rowSpanNew = 4;
+          this.rowSpan = 6;
+          this.rowSpanNew = 3;
         } else {
           this.colSpan = 1;
           this.rowSpan = 2;
@@ -47,7 +46,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onLogSelection(selection) {
+  onLogSelection(selection: string) {
     if (selection == 'new') {
       // open new log dialog, emit new creation, goto main screen
       const dialogRef = this.dialog.open(CreateLogComponent, {
@@ -63,8 +62,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
 
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.logs = this.logRef.valueChanges();

@@ -16,13 +16,12 @@ import { User } from './models/user.model';
 export class AppComponent implements OnInit {
 
   showLogin: boolean = true;
-
   title = 'log';
 
   providers = AuthProvider;
 
   constructor(public authService: AuthService) {
-
+    
   }
 
   toggleView() {
