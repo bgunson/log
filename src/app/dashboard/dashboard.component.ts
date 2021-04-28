@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   colSpan: number; 
   rowSpan: number; 
   rowSpanNew: number;
-  @Output() hasSelected = new EventEmitter<string>();
+  @Output() hasSelected = new EventEmitter<Log>();
   
 
   constructor(private breakpointObserver: BreakpointObserver, 
@@ -37,17 +37,17 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onLogSelection(selection: string) {
-    if (selection == 'new') {
+  onLogSelection(selection: Log) {
+    if (selection == null) {
       // open new log dialog, emit new creation, goto main screen
       const dialogRef = this.dialog.open(CreateLogComponent, {
         data: this.logList
       });
       dialogRef.afterClosed().subscribe(() => {
-        this.hasSelected.emit(localStorage.getItem('selectedLog'))
+        this.hasSelected.emit(JSON.parse(localStorage.getItem('selectedLog')))
       })
     } else {
-      localStorage.setItem('selectedLog', selection);
+      localStorage.setItem('selectedLog', JSON.stringify(selection));
       this.hasSelected.emit(selection);
     }
   }

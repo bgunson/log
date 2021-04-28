@@ -16,12 +16,12 @@ export class AuthorizedComponent implements OnInit {
   showDashboard: boolean = true;
   user: User;
   showSpinner: boolean = true;
-  selectedLog: string;
+  selectedLog: Log;
   logRef: AngularFirestoreCollection<Log>;
   logList: Log[];
 
-  constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) { 
-    this.selectedLog = localStorage.getItem('selectedLog');
+  constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) {
+    this.selectedLog = JSON.parse(localStorage.getItem('selectedLog'));
     this.user = this.authService.user;
 
     console.log("email verified: " + this.user.isEmailVerified);
@@ -37,7 +37,7 @@ export class AuthorizedComponent implements OnInit {
       data: this.logList
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.selectedLog = localStorage.getItem('selectedLog');
+      this.selectedLog = JSON.parse(localStorage.getItem('selectedLog'));
     })
   }
 
@@ -46,9 +46,9 @@ export class AuthorizedComponent implements OnInit {
     this.showDashboard = true;
   }
 
-  onLogSelectionChange(selected) {
-    this.selectedLog = selected.id;
-    localStorage.setItem('selectedLog', selected.id);
+  onLogSelectionChange(selected: Log) {
+    this.selectedLog = selected;
+    localStorage.setItem('selectedLog', JSON.stringify(selected));
   }
 
   userSignedOut() {
@@ -56,7 +56,7 @@ export class AuthorizedComponent implements OnInit {
     localStorage.clear();
   }
 
-  userSelected(event) {
+  userSelected(event: Log) {
     this.selectedLog = event;
     this.showDashboard = false;
   }
