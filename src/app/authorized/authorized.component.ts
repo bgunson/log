@@ -25,7 +25,7 @@ export class AuthorizedComponent implements OnInit {
     this.sL = JSON.parse(localStorage.getItem('sL'));
     // Get the current user form the aiuth service
     this.user = this.authService.user;
-    //console.log("email verified: " + this.user.isEmailVerified);
+    //console.log("email verified: " + this.authService.isEmailVerified);
 
   }
 

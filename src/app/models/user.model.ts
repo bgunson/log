@@ -5,5 +5,4 @@ export interface User {
     displayName: string;  
     phoneNumber?: string;
     providerId?: string;
-    isEmailVerified?: boolean
   }
