@@ -17,7 +17,7 @@
         <hr>
         <label id="your-logs">Your Logs</label>
 
-        <mat-option *ngFor="let log of logList" [value]="log.id" (click)="onLogSelectionChange(log)"
+        <mat-option *ngFor="let log of allLogs | async" [value]="log.id" (click)="onLogSelectionChange(log)"
           [selected]="sL.id == log.id">
           {{ log.id }}
         </mat-option>
@@ -32,7 +32,7 @@
 <div *ngIf="showDashboard; else main">
   <div id="initial-log-select">
     <mat-spinner *ngIf="showSpinner" color="accent" style="left: 50%; margin-left: -3em; margin-top: 15%;"></mat-spinner>
-    <app-dashboard [showSpinner]="showSpinner" [logList]="logList" (hasSelected)="userSelected($event)"></app-dashboard>
+    <app-dashboard [showSpinner]="showSpinner" [logList]="allLogs" (hasSelected)="userSelected($event)"></app-dashboard>
   </div>
 </div>
 

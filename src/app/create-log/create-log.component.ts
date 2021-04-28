@@ -112,14 +112,18 @@ export class CreateLogComponent {
       attributes: attributeObject
     }
 
-    if (this.logExists(logId)) {
-      // make validator for duplicate log
-      alert("There is already a log with this ID...")
-    } else {
-      localStorage.setItem('selectedLog', logId);
-      this.dbService.addLog(logObject);
+    localStorage.setItem('sL', JSON.stringify(logObject));
+    this.dbService.addLog(logObject);
 
-      this.dialogRef.close();
-    }
+    this.dialogRef.close();
+    // if (this.logExists(logId)) {
+    //   // make validator for duplicate log
+    //   alert("There is already a log with this ID...")
+    // } else {
+    //   localStorage.setItem('selectedLog', JSON.stringify(logObject));
+    //   this.dbService.addLog(logObject);
+
+    //   this.dialogRef.close();
+    // }
   }
 }

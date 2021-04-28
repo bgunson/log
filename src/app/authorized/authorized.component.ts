@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
@@ -18,7 +19,8 @@ export class AuthorizedComponent implements OnInit {
   showSpinner: boolean = true;                // Show the loading spinner when true    
   sL: Log;                                    // The selected Log in localStorage
   logRef: AngularFirestoreCollection<Log>;    // Reference to the user's logs in the db
-  logList: Log[];                             // Local array to store the list of logs
+  logList: Log[] = [];                        // Local array to store the list of logs
+  allLogs: Observable<Log[]>;
 
   constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) {
     // Check for a selected log in localStorage
@@ -91,10 +93,10 @@ export class AuthorizedComponent implements OnInit {
     }
 
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
-    this.logRef.valueChanges().subscribe(res => {
-       this.logList = res;
-       this.showSpinner = false;
-     });
+    this.allLogs = this.logRef.valueChanges();
+    this.allLogs.subscribe(() => {
+      this.showSpinner = false;
+    });
   }
 
 }

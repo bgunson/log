@@ -29,12 +29,11 @@ import { CreateLogComponent } from './create-log/create-log.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthorizedComponent } from './authorized/authorized.component';
 import { LogCardComponent } from './log-data/log-card/log-card.component';
-
 
 
 
@@ -64,14 +63,7 @@ import { LogCardComponent } from './log-data/log-card/log-card.component';
     MatExpansionModule,
     // Specify the ngx-auth-firebaseui library as an import
     NgxAuthFirebaseUIModule.forRoot(
-      {
-        apiKey: 'AIzaSyDGJa5wGLT_6SvNBVfkN8jdu9b-Ou1i3I8',
-        authDomain: 'log-app-80fd0.firebaseapp.com',
-        databaseURL: 'your-firebase-databaseURL',
-        projectId: 'log-app-80fd0',
-        storageBucket: 'log-app-80fd0.appspot.com',
-        messagingSenderId: '98872430236'
-      },
+      environment.firebase,
        () => 'log',
       {
         enableFirestoreSync: true, // enable/disable autosync users with firestore
