@@ -1,7 +1,6 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from '../models/log.model';
-import { User } from '../models/user.model';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -15,16 +14,14 @@ export class DashboardComponent implements OnInit {
 
   @Input() logList: Log[];
   @Input() showSpinner: boolean;
-  user: User;
   colSpan: number; 
   rowSpan: number; 
   rowSpanNew: number;
-  @Output() hasSelected = new EventEmitter<string>();
+  @Output() hasSelected = new EventEmitter<Log>();
   
 
   constructor(private breakpointObserver: BreakpointObserver, 
     public dialog: MatDialog) {
-    //this.user = authService.user;
 
     this.breakpointObserver.observe(Breakpoints.Handset).subscribe(res => {
         if (res.matches) {
@@ -40,17 +37,17 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onLogSelection(selection: string) {
-    if (selection == 'new') {
+  onLogSelection(selection: Log) {
+    if (selection == null) {
       // open new log dialog, emit new creation, goto main screen
       const dialogRef = this.dialog.open(CreateLogComponent, {
         data: this.logList
       });
       dialogRef.afterClosed().subscribe(() => {
-        this.hasSelected.emit(localStorage.getItem('selectedLog'))
+        this.hasSelected.emit(JSON.parse(localStorage.getItem('sL')))
       })
     } else {
-      localStorage.setItem('selectedLog', selection);
+      localStorage.setItem('sL', JSON.stringify(selection));
       this.hasSelected.emit(selection);
     }
   }

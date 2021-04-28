@@ -9,16 +9,19 @@ import { User } from '../models/user.model';
 export class AuthService {
 
   user: User;
+  isEmailVerified: boolean = false;
 
   constructor(public auth: AngularFireAuth) { 
-    //console.log("new auth service");
+    // Get the current auth state
     auth.onAuthStateChanged(res => {
       this.user = res;
       if (res.emailVerified) {
-        this.user.isEmailVerified = true;
+        this.isEmailVerified = true;
       } else {
-        this.user.isEmailVerified = false;
+        this.isEmailVerified = false;
       }
     })
   }
+
+  
 }
