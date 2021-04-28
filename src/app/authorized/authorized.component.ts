@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
@@ -19,7 +18,6 @@ export class AuthorizedComponent implements OnInit {
   showSpinner: boolean = true;
   selectedLog: string;
   logRef: AngularFirestoreCollection<Log>;
-  logs: Observable<Log[]>;
   logList: Log[];
 
   constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) { 
@@ -34,9 +32,7 @@ export class AuthorizedComponent implements OnInit {
    * When a user wishes to add a new log, open the create-log component in a dialog popup
    */
   openDialog() {
-
     // TODO: when user clicks off dialog wihtoout inputting anything make sure we stay at dashboard
-
     const dialogRef = this.dialog.open(CreateLogComponent, {
       data: this.logList
     });
@@ -73,11 +69,10 @@ export class AuthorizedComponent implements OnInit {
     }
 
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
-    this.logs = this.logRef.valueChanges();
-    this.logs.subscribe(res => {
-      this.logList = res;
-      this.showSpinner = false;
-    });
+    this.logRef.valueChanges().subscribe(res => {
+       this.logList = res;
+       this.showSpinner = false;
+     });
   }
 
 }

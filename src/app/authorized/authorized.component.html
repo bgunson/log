@@ -17,7 +17,7 @@
         <hr>
         <label id="your-logs">Your Logs</label>
 
-        <mat-option *ngFor="let log of logs | async" [value]="log.id" (click)="onLogSelectionChange(log)"
+        <mat-option *ngFor="let log of logList" [value]="log.id" (click)="onLogSelectionChange(log)"
           [selected]="selectedLog == log.id">
           {{ log.id }}
         </mat-option>

@@ -1,7 +1,6 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from '../models/log.model';
-import { User } from '../models/user.model';
 import { CreateLogComponent } from '../create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -15,7 +14,6 @@ export class DashboardComponent implements OnInit {
 
   @Input() logList: Log[];
   @Input() showSpinner: boolean;
-  user: User;
   colSpan: number; 
   rowSpan: number; 
   rowSpanNew: number;
@@ -24,7 +22,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver, 
     public dialog: MatDialog) {
-    //this.user = authService.user;
 
     this.breakpointObserver.observe(Breakpoints.Handset).subscribe(res => {
         if (res.matches) {
