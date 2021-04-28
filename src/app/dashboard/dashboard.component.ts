@@ -44,10 +44,10 @@ export class DashboardComponent implements OnInit {
         data: this.logList
       });
       dialogRef.afterClosed().subscribe(() => {
-        this.hasSelected.emit(JSON.parse(localStorage.getItem('selectedLog')))
+        this.hasSelected.emit(JSON.parse(localStorage.getItem('sL')))
       })
     } else {
-      localStorage.setItem('selectedLog', JSON.stringify(selection));
+      localStorage.setItem('sL', JSON.stringify(selection));
       this.hasSelected.emit(selection);
     }
   }

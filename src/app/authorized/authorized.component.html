@@ -7,7 +7,7 @@
 
   <div class="log-selector-div" *ngIf="!showDashboard">
     <mat-form-field style="text-align: right;" appearance="none">
-      <mat-select class="log-select" style="font-family: monospace;" [(value)]="selectedLog.id">
+      <mat-select class="log-select" style="font-family: monospace;" [(value)]="sL.id">
         <mat-option (click)="toDashboard()">
           All Logs
         </mat-option>
@@ -18,7 +18,7 @@
         <label id="your-logs">Your Logs</label>
 
         <mat-option *ngFor="let log of logList" [value]="log.id" (click)="onLogSelectionChange(log)"
-          [selected]="selectedLog.id == log.id">
+          [selected]="sL.id == log.id">
           {{ log.id }}
         </mat-option>
       </mat-select>
@@ -38,7 +38,7 @@
 
 <ng-template #main>
     <div class="main-div">
-      <span class="mat-h1">{{ selectedLog.id }}</span>  
+      <span class="mat-h1">{{ sL.id }}</span>  
       <app-log-table></app-log-table>
     </div>
 </ng-template>

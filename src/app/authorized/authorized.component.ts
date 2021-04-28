@@ -13,56 +13,78 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthorizedComponent implements OnInit {
 
-  showDashboard: boolean = true;
-  user: User;
-  showSpinner: boolean = true;
-  selectedLog: Log;
-  logRef: AngularFirestoreCollection<Log>;
-  logList: Log[];
+  showDashboard: boolean = true;              // Whether to show the log selection screen
+  user: User;                                 // The current user
+  showSpinner: boolean = true;                // Show the loading spinner when true    
+  sL: Log;                                    // The selected Log in localStorage
+  logRef: AngularFirestoreCollection<Log>;    // Reference to the user's logs in the db
+  logList: Log[];                             // Local array to store the list of logs
 
   constructor(private authService: AuthService, private store: AngularFirestore, public dialog: MatDialog) {
-    this.selectedLog = JSON.parse(localStorage.getItem('selectedLog'));
+    // Check for a selected log in localStorage
+    this.sL = JSON.parse(localStorage.getItem('sL'));
+    // Get the current user form the aiuth service
     this.user = this.authService.user;
-
-    console.log("email verified: " + this.user.isEmailVerified);
+    //console.log("email verified: " + this.user.isEmailVerified);
 
   }
 
   /**
    * When a user wishes to add a new log, open the create-log component in a dialog popup
    */
-  openDialog() {
+  openDialog() : void {
     // TODO: when user clicks off dialog wihtoout inputting anything make sure we stay at dashboard
     const dialogRef = this.dialog.open(CreateLogComponent, {
       data: this.logList
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.selectedLog = JSON.parse(localStorage.getItem('selectedLog'));
+      this.sL = JSON.parse(localStorage.getItem('sL'));
     })
   }
 
-  toDashboard() {
+  /**
+   * Navigate to the log selection screen under assumption user is choosing different log
+   * so clear local storage (selected Log)
+   */
+  toDashboard() : void {
     localStorage.clear();
     this.showDashboard = true;
   }
 
-  onLogSelectionChange(selected: Log) {
-    this.selectedLog = selected;
-    localStorage.setItem('selectedLog', JSON.stringify(selected));
+  /**
+   * Handle event when user chooses a different log from the top right dropdown
+   * 
+   * @param selected  the Log object the user selected from the list 
+   */
+  onLogSelectionChange(selected: Log) : void {
+    this.sL = selected;
+    localStorage.setItem('sL', JSON.stringify(selected));
   }
 
-  userSignedOut() {
+  /**
+   * Handle event when user signs out of the app so clear local storage of the selected Log
+   */
+  userSignedOut() : void {
     this.showDashboard = true;
     localStorage.clear();
   }
 
+  /**
+   * Callback function that is fired when a user selects a log from the log selection screen child component
+   * 
+   * @param event the Log that was selected as an arg
+   */
   userSelected(event: Log) {
-    this.selectedLog = event;
+    this.sL = event;
     this.showDashboard = false;
   }
 
+  /**
+   * Check for a selected log in local storage, show the log selection screen accordingly. Then read from the db for 
+   * the user's Logs and subscribe to that ref.
+   */
   ngOnInit(): void {
-    if (this.selectedLog) {
+    if (this.sL) {
       this.showDashboard = false;
     } else {
       this.showDashboard = true;
