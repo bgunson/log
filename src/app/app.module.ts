@@ -14,18 +14,18 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SelectDashboardComponent } from './authorized/dashboards/select-dashboard/select-dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { LogTableComponent } from './log-data/log-table/log-table.component';
+import { LogTableComponent } from './authorized/log-data/log-table/log-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateLogComponent } from './create-log/create-log.component';
+import { CreateLogComponent } from './authorized/log-data/create-log/create-log.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,14 +33,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthorizedComponent } from './authorized/authorized.component';
-import { LogCardComponent } from './log-data/log-card/log-card.component';
+import { LogCardComponent } from './authorized/log-data/log-card/log-card.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    SelectDashboardComponent,
     LogTableComponent,
     CreateLogComponent,
     AuthorizedComponent,

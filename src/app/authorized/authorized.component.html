@@ -32,7 +32,7 @@
 <div *ngIf="showDashboard; else main">
   <div id="initial-log-select">
     <mat-spinner *ngIf="showSpinner" color="accent" style="left: 50%; margin-left: -3em; margin-top: 15%;"></mat-spinner>
-    <app-dashboard [showSpinner]="showSpinner" [logList]="allLogs" (hasSelected)="userSelected($event)"></app-dashboard>
+    <app-select-dashboard [showSpinner]="showSpinner" [logList]="allLogs" (hasSelected)="userSelected($event)"></app-select-dashboard>
   </div>
 </div>
 

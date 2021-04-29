@@ -1,17 +1,17 @@
-import { Component, Output, Input, EventEmitter, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Log } from '../models/log.model';
-import { CreateLogComponent } from '../create-log/create-log.component';
+import { Log } from '../../../models/log.model';
+import { CreateLogComponent } from '../../log-data/create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-select-dashboard',
+  templateUrl: './select-dashboard.component.html',
+  styleUrls: ['./select-dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class SelectDashboardComponent implements OnInit {
 
   @Input() logList: Observable<Log[]>;
   @Input() showSpinner: boolean;

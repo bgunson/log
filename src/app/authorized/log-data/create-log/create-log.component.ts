@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DbService } from '../services/db.service';
+import { DbService } from '../../../services/db.service';
 
 @Component({
   selector: 'app-create-log',
