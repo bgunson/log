@@ -34,10 +34,11 @@ export class AuthorizedComponent implements OnInit {
   /**
    * When a user wishes to add a new log, open the create-log component in a dialog popup
    */
-  openDialog() : void {
+  openCreateDialog() : void {
+    console.log(this.sL);
     // TODO: when user clicks off dialog wihtoout inputting anything make sure we stay at dashboard
     const dialogRef = this.dialog.open(CreateLogComponent, {
-      data: this.logList
+      data: this.allLogs
     });
     dialogRef.afterClosed().subscribe(() => {
       this.sL = JSON.parse(localStorage.getItem('sL'));
@@ -86,6 +87,7 @@ export class AuthorizedComponent implements OnInit {
    * the user's Logs and subscribe to that ref.
    */
   ngOnInit(): void {
+    console.log(this.sL);
     if (this.sL) {
       this.showDashboard = false;
     } else {
@@ -94,8 +96,7 @@ export class AuthorizedComponent implements OnInit {
 
     this.logRef = this.store.collection(`users/${this.user.uid}/logs`);
     this.allLogs = this.logRef.valueChanges();
-    this.allLogs.subscribe(res => {
-      this.logList = res;
+    this.allLogs.subscribe(() => {
       this.showSpinner = false;
     });
   }

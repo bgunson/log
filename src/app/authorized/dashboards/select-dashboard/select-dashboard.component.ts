@@ -38,19 +38,15 @@ export class SelectDashboardComponent implements OnInit {
     );
   }
 
+  openCreateDialog() : void {
+    const dialogRef = this.dialog.open(CreateLogComponent, {
+      data: this.logList
+    });
+  }
+
   onLogSelection(selection: Log) {
-    if (selection == null) {
-      // open new log dialog, emit new creation, goto main screen
-      const dialogRef = this.dialog.open(CreateLogComponent, {
-        data: this.logList
-      });
-      dialogRef.afterClosed().subscribe(() => {
-        this.hasSelected.emit(JSON.parse(localStorage.getItem('sL')))
-      })
-    } else {
-      localStorage.setItem('sL', JSON.stringify(selection));
-      this.hasSelected.emit(selection);
-    }
+    localStorage.setItem('sL', JSON.stringify(selection));
+    this.hasSelected.emit(selection);
   }
 
   ngOnInit() {

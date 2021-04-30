@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Log } from 'src/app/models/log.model';
 import { DbService } from '../../../services/db.service';
 
 @Component({
@@ -12,11 +13,9 @@ export class CreateLogComponent {
 
   numFields = 0;
   duplicateLog: boolean = false;
-  fieldsAdded = [true, false, false, false, false]
-
-  // TODO: add form control to default checkbox
+  fieldsAdded = [true, false, false, false, false];
   
-  logForm = this.fb.group({
+  logForm: FormGroup = this.fb.group({
   
     identifier: [null, Validators.compose([
       Validators.required, Validators.minLength(2), Validators.maxLength(50)])
@@ -56,7 +55,9 @@ export class CreateLogComponent {
     private dbService: DbService, 
     public dialogRef: MatDialogRef<CreateLogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) { }
+    ) { 
+      dialogRef.disableClose = true;
+    }
 
   
 
@@ -92,6 +93,10 @@ export class CreateLogComponent {
     return false;
   }
 
+  cancel() : void {
+    this.dialogRef.close();
+  }
+
 
   onSubmit() {
     
@@ -112,10 +117,14 @@ export class CreateLogComponent {
       attributes: attributeObject
     }
 
-    localStorage.setItem('sL', JSON.stringify(logObject));
-    this.dbService.addLog(logObject);
+    if (this.logForm.valid) {
+      // Also, reimplement if log exists or not already
+      localStorage.setItem('sL', JSON.stringify(logObject));
+      this.dbService.addLog(logObject);
 
-    this.dialogRef.close();
+      this.dialogRef.close();
+    }
+
     // if (this.logExists(logId)) {
     //   // make validator for duplicate log
     //   alert("There is already a log with this ID...")

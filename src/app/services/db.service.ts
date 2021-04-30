@@ -17,7 +17,7 @@ export class DbService {
 
   addLog(log: Log) {
 
-    var logId: string = log.id;
+    let logId: string = log.id;
     
     // Put log in users logs and set config
     this.store.collection(`users/${this.user.uid}/logs`).doc(logId).set(log).then(res => {
