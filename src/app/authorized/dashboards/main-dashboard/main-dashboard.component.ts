@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from 'src/app/models/log.model';
@@ -10,7 +10,7 @@ import { Log } from 'src/app/models/log.model';
 })
 export class MainDashboardComponent {
 
-  sL: Log;
+  @Input() sL: Log;
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -34,6 +34,6 @@ export class MainDashboardComponent {
   );
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.sL = JSON.parse(localStorage.getItem("sL"));
+    
   }
 }

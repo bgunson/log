@@ -42,6 +42,11 @@ export class SelectDashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateLogComponent, {
       data: this.logList
     });
+    dialogRef.afterClosed().subscribe(() => {
+      if (localStorage.getItem('sL')) {
+        this.hasSelected.emit(JSON.parse(localStorage.getItem('sL')));
+      }
+    })
   }
 
   onLogSelection(selection: Log) {
