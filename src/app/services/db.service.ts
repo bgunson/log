@@ -15,7 +15,17 @@ export class DbService {
     this.user = authService.user; 
   }
 
-  addLog(log: Log) {
+  deleteLog(log: Log) : void {
+    let logId: string = log.id;
+
+    this.store.collection(`users/${this.user.uid}/logs`).doc(logId).delete().then(res => {
+      console.log(res);
+    }).catch(e => {
+      alert("An error occured while tring to delete " + logId + ". Please try again leter.")
+    })
+  }
+
+  addLog(log: Log) : void {
 
     let logId: string = log.id;
     

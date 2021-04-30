@@ -13,12 +13,16 @@
   z-index: 10;
 }
 
+.new-icon {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+
 .grid-container {
   
   align-content: center;
 }
-
-
 
 .mat-h1 {
   margin-left: 2%;

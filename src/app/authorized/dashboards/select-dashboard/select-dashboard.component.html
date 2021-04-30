@@ -1,8 +1,11 @@
 <div class="grid-container" *ngIf="!showSpinner">
+  
   <h1 class="mat-h1">Your Logs</h1>
+  
   <mat-grid-list cols="3" rowHeight="3:1">
     <mat-grid-tile (click)="openCreateDialog()" [colspan]="this.colSpan" [rowspan]="this.rowSpanNew">
       <mat-card class="dashboard-card">
+        
         <mat-card-content class="dashboard-card-content" style="padding-top: 1vw; text-align: center; padding-left: 0;">
           <div><mat-icon color="primary" style="font-size: 50px; padding-right: 25px;">add</mat-icon></div>
           <p class="add-log-txt" style="display: none; font-weight: 500;">Add Log</p>
@@ -10,7 +13,9 @@
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let log of logList | async" (click)="onLogSelection(log)" [colspan]="this.colSpan" [rowspan]="this.rowSpan">
-      <app-log-card [log]="log"></app-log-card>
+      <mat-card class="dashboard-card">
+        <app-log-card [log]="log"></app-log-card>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

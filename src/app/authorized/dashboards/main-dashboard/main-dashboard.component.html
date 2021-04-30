@@ -1,6 +1,10 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-list cols="4" rowHeight="300px">
+    <mat-grid-tile [colspan]="1" [rowSpan]="1">
+      <mat-card class="dashboard-card">      
+        <app-log-card [log]="this.sL"></app-log-card>
+      </mat-card>
+    </mat-grid-tile>
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -10,8 +14,14 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Remove</span>
+              </button>
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
