@@ -5,7 +5,7 @@
   
   <span class="toolbar-spacer"></span>
 
-  <div class="log-selector-div" *ngIf="!showDashboard">
+  <div class="log-selector-div" *ngIf="!showDashboard && !showSpinner">
     <mat-form-field style="text-align: right;" appearance="none">
       <mat-select class="log-select" style="font-family: monospace;" [(value)]="sL.id">
         <mat-option (click)="toDashboard()">
@@ -24,6 +24,7 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <mat-spinner *ngIf="showSpinner" [diameter]="30" style="padding-right: 20px;" color="accent"></mat-spinner>
 
   <ngx-auth-firebaseui-avatar (onSignOut)="userSignedOut()"></ngx-auth-firebaseui-avatar>
   
@@ -39,7 +40,7 @@
 <ng-template #main>
     <div class="main-div">
       <span class="mat-h1">{{ sL.id }}</span>  
-      <app-log-table></app-log-table>
+      <app-log-table></app-log-table> 
     </div>
 </ng-template>
 

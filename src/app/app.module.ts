@@ -25,7 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateLogComponent } from './authorized/log-data/create-log/create-log.component';
+import { CreateLogComponent } from './authorized/dialogs/create-log/create-log.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +34,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthorizedComponent } from './authorized/authorized.component';
 import { LogCardComponent } from './authorized/log-data/log-card/log-card.component';
+import { MainDashboardComponent } from './authorized/dashboards/main-dashboard/main-dashboard.component';
 
 
 
@@ -45,6 +46,7 @@ import { LogCardComponent } from './authorized/log-data/log-card/log-card.compon
     CreateLogComponent,
     AuthorizedComponent,
     LogCardComponent,
+    MainDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,8 +91,7 @@ import { LogCardComponent } from './authorized/log-data/log-card/log-card.compon
     MatSortModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule,
-    
+    ReactiveFormsModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

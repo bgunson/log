@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { CreateLogComponent } from './log-data/create-log/create-log.component';
+import { CreateLogComponent } from './dialogs/create-log/create-log.component';
 import { Log } from '../models/log.model';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';

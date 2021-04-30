@@ -1,7 +1,7 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Log } from '../../../models/log.model';
-import { CreateLogComponent } from '../../log-data/create-log/create-log.component';
+import { CreateLogComponent } from '../../dialogs/create-log/create-log.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
