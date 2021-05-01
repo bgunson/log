@@ -11,7 +11,7 @@ export class LogCardComponent implements OnInit {
 
   @Input() log: Log;
 
-  constructor(private db: DbService) { }
+  constructor(public db: DbService) { }
 
   ngOnInit(): void {
     

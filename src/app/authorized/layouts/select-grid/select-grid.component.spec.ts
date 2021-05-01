@@ -7,15 +7,15 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { SelectDashboardComponent } from './select-dashboard.component';
+import { SelectGridComponent } from './select-grid.component';
 
 describe('DashboardComponent', () => {
-  let component: SelectDashboardComponent;
-  let fixture: ComponentFixture<SelectDashboardComponent>;
+  let component: SelectGridComponent;
+  let fixture: ComponentFixture<SelectGridComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectDashboardComponent],
+      declarations: [SelectGridComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -29,7 +29,7 @@ describe('DashboardComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectDashboardComponent);
+    fixture = TestBed.createComponent(SelectGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,7 +17,7 @@
 - [x] When user deletes log, removed from database
 - [ ] When user deletes account, all logs are removed from database
 - [ ] Warning messages when user deletes logs 
-- [ ] If user deletes selected log, then go back to select dashboard
+- [ ] If user deletes selected log, then go back to select dashboard - from main dash
 
 ### Log Data
 - [ ] Log table component

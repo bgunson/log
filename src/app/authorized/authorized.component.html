@@ -30,11 +30,22 @@
   
 </mat-toolbar>
 
-<div *ngIf="showDashboard; else main">
-  <div id="initial-log-select">
-    <mat-spinner *ngIf="showSpinner" color="accent" style="left: 50%; margin-left: -3em; margin-top: 15%;"></mat-spinner>
-    <app-select-dashboard [showSpinner]="showSpinner" [logList]="allLogs" (hasSelected)="userSelected($event)"></app-select-dashboard>
-  </div>
+<div id="initial-log-select" *ngIf="showDashboard; else main">
+  <h1 class="mat-h1">
+    Your Logs
+    <mat-button-toggle-group appearance="legacy" #group="matButtonToggleGroup">
+      <mat-button-toggle value="left" aria-label="grid view">
+        <mat-icon>grid_view</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="center" aria-label="list view">
+        <mat-icon>view_list</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </h1>
+  
+  <mat-spinner *ngIf="showSpinner" color="accent" style="left: 50%; margin-left: -3em; margin-top: 15%;"></mat-spinner>
+
+  <app-select-grid [showSpinner]="showSpinner" [logList]="allLogs" (hasSelected)="userSelected($event)"></app-select-grid>
 </div>
 
 <ng-template #main>

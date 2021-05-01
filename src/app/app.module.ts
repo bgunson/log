@@ -14,7 +14,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { SelectDashboardComponent } from './authorized/dashboards/select-dashboard/select-dashboard.component';
+import { SelectGridComponent } from './authorized/layouts/select-grid/select-grid.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -34,14 +34,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthorizedComponent } from './authorized/authorized.component';
 import { LogCardComponent } from './authorized/log-data/log-card/log-card.component';
-import { MainDashboardComponent } from './authorized/dashboards/main-dashboard/main-dashboard.component';
+import { MainDashboardComponent } from './authorized/layouts/main-dashboard/main-dashboard.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectDashboardComponent,
+    SelectGridComponent,
     LogTableComponent,
     CreateLogComponent,
     AuthorizedComponent,
@@ -63,6 +64,7 @@ import { MainDashboardComponent } from './authorized/dashboards/main-dashboard/m
     AngularFirestoreModule,
     AngularFireAuthModule,
     MatExpansionModule,
+    MatButtonToggleModule,
     // Specify the ngx-auth-firebaseui library as an import
     NgxAuthFirebaseUIModule.forRoot(
       environment.firebase,

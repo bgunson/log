@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-select-dashboard',
-  templateUrl: './select-dashboard.component.html',
-  styleUrls: ['./select-dashboard.component.css'],
+  selector: 'app-select-grid',
+  templateUrl: './select-grid.component.html',
+  styleUrls: ['./select-grid.component.css'],
 })
-export class SelectDashboardComponent implements OnInit {
+export class SelectGridComponent implements OnInit {
 
   @Input() logList: Observable<Log[]>;
   @Input() showSpinner: boolean;

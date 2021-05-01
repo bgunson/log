@@ -1,7 +1,13 @@
 .text-logo {
-    font-size:xx-large;
-    font-family:monospace;
-  }
+  font-size:xx-large;
+  font-family:monospace;
+}
+
+.mat-h1 {
+  padding-top: 5vw;
+  margin-left: 1%;
+  color: white;
+}
 
 
 .toolbar-spacer {
@@ -18,21 +24,26 @@
 }
 
 #initial-log-select {
+  padding: 10px;
   padding-top: 10vh;
-  background: linear-gradient(#48a999, white);
+  background: linear-gradient(#439889, white);
 }
 
 
 
 .main-div {
   /* background-image: linear-gradient(#0f635a, white 25%);  */
-  background: linear-gradient(#48a999, white 25%);
+  background: linear-gradient(#439889, white 25%);
   padding: 5%;
   padding-top: 80px;
 }
 
+mat-button-toggle-group {
+  vertical-align: middle;
+  float: right;
+}
 .log-selector-div {
-  padding-top: 10px;
+  margin-top: 10px;
   padding-right: 20px;
   font-size: smaller;
   width: min-content;
@@ -47,7 +58,7 @@
 
 @media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
   #initial-log-select {
-    padding: 20%;
+    padding: 10%;
     padding-top: 10vh;
   }
   .main-div {
@@ -55,5 +66,16 @@
     padding: 10%;
     padding-top: 80px;
   }
+
+  .mat-h1 {
+    padding-top: 0;
+  }
   
+}
+
+@media (min-width: 1200px) {
+  #initial-log-select {
+    padding: 20%;
+    padding-top: 10vh;
+  }
 }

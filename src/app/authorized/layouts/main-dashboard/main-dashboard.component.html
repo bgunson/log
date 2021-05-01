@@ -1,10 +1,11 @@
 <div class="grid-container">
-  <mat-grid-list cols="4" rowHeight="300px">
-    <mat-grid-tile [colspan]="1" [rowSpan]="1">
+  <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">      
         <app-log-card [log]="this.sL"></app-log-card>
       </mat-card>
     </mat-grid-tile>
+    
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>

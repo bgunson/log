@@ -1,7 +1,5 @@
 <div class="grid-container" *ngIf="!showSpinner">
-  
-  <h1 class="mat-h1">Your Logs</h1>
-  
+    
   <mat-grid-list cols="3" rowHeight="3:1">
     <mat-grid-tile (click)="openCreateDialog()" [colspan]="this.colSpan" [rowspan]="this.rowSpanNew">
       <mat-card class="dashboard-card">

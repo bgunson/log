@@ -20,13 +20,7 @@
 }
 
 .grid-container {
-  
   align-content: center;
-}
-
-.mat-h1 {
-  margin-left: 2%;
-  color: white;
 }
 
 .dashboard-card {
@@ -42,4 +36,11 @@
 .dashboard-card:hover {
   filter:black(100%);
   opacity: 0.5;
+}
+
+
+@media (max-width: 768px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  .grid-container {
+    padding-top: 6vw;
+  }  
 }
