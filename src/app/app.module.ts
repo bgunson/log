@@ -36,6 +36,8 @@ import { AuthorizedComponent } from './authorized/authorized.component';
 import { LogCardComponent } from './authorized/log-data/log-card/log-card.component';
 import { MainDashboardComponent } from './authorized/layouts/main-dashboard/main-dashboard.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SelectListComponent } from './authorized/layouts/select-list/select-list.component';
+import { EditLogComponent } from './authorized/dialogs/edit-log/edit-log.component';
 
 
 
@@ -48,6 +50,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     AuthorizedComponent,
     LogCardComponent,
     MainDashboardComponent,
+    SelectListComponent,
+    EditLogComponent,
   ],
   imports: [
     BrowserModule,
