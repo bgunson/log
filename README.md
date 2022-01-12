@@ -6,4 +6,4 @@ Log is a simple record keeping application I am building with the intention of t
 
 ______
 
-Please see [my website](https://bgunson.github.io/) for progress updates.
+This repo has been archived. This project was my first stab at using Angular. I have since moved on to bigger and better projects and am much more experienced using the framework.
